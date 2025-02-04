@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>task 6</title>
+</head>
+<body>
+    <script>
+        let counter = 1;
+        for (let tabularCycle = 0; tabularCycle < 3; tabularCycle++) {
+            document.write(`<table <table border="3" style="display: inline-block; margin-right: 30px;">`);
+            for (let rowCycle = 0; rowCycle < 3; rowCycle++) {
+                document.write(`<tr>`);
+                    for(let columnsCycle = 0; columnsCycle < 3; columnsCycle++) {
+                        document.write(`<td>${counter}</td>`)
+                        counter++;
+                    }
+                document.write(`</tr>`);
+            }
+            document.write(`</table>`)
+        }
+    </script>
+</body>
+</html>

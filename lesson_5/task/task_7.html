@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task 7</title>
+</head>
+<body>
+    <script>
+        let ucerNumber = parseInt(prompt("Введіть кількість абзаців"));
+        for ( let indent = 1; indent <= ucerNumber; indent++) {
+            document.write(`<h1>Заголовок ${indent}</h1>`);
+            for (let article = 1; article <= indent; article++) {
+                 document.write(`<p>Розділ${indent} параграф${article}</p>`);
+            }
+            document.write(`<hr>`);
+        }
+    </script>
+</body>
+</html>

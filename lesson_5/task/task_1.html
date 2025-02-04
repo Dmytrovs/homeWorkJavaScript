@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>task_1</title>
+</head>
+<body>
+    <script>
+        for (let i = 0; i < 1; i++) {
+            const userAnswer = parseInt(prompt("Введіть кількість випадкових чисел:"));
+            if( userAnswer) {
+                for ( let k = 0; k < userAnswer; k++) {
+                    const randomNumbers = 1 + Math.floor(Math.random() * 100);
+                    document.write(`
+                    <ul>
+                        <li>${randomNumbers}</li>
+                    </ul>
+                `)
+                }
+            }
+        }
+    </script>
+</body>
+</html>

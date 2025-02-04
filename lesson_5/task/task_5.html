@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task 5</title>
+</head>
+<body>
+
+  <th></th>
+    <script>
+        document.write (`
+            <table border="2">
+        `);
+            let counter = 1;
+            for (let row = 0; row < 3; row++) {
+                document.write(`<tr>`);
+                    for(let columns = 0; columns < 3; columns++) {
+                        document.write(`<td>${counter}</td>`)
+                        counter++;
+                    }
+                document.write(`</tr>`);
+            }
+        document.write(`
+            </table>
+        `);
+    </script>
+</body>
+</html>

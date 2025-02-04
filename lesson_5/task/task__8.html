@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task 8</title>
+</head>
+<body>
+    <script>
+     let guessNumber = parseInt(prompt(" Користувач загадує число від 1 - 10"));
+        for (let i = 1; i <= 3; i++) {
+            let randomNumber = 1 + Math.floor(Math.random() * 10);
+            confirm(`Ваше число ${randomNumber}?`);
+            // for( let j = 0; j < 1; j++) {
+            if (randomNumber == guessNumber ) {
+                alert(`Комп'ютер вгадав Ваше число ${guessNumber}`);
+            break;
+            } else if (i === 3)  {
+                alert(`Нажаль я не вгадав ваше число було ${guessNumber}`);
+            }
+        }
+        //}
+
+    </script>
+</body>
+</html>

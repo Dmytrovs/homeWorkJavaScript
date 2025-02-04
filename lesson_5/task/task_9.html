@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>task 9</title>
+</head>
+<body>
+    
+    <script>
+        let makesNumber = parseInt(prompt(" Користувач загадує число від 1 - 30"));
+            while (makesNumber > 0) {
+                let randomNumber = 1 + Math.floor(Math.random() * 30);
+                confirm(`Ваше число ${randomNumber}?`);
+                  if (randomNumber === makesNumber) {
+                         alert(`Комп'ютер вгадав Ваше число ${makesNumber}`);
+                         break;
+                 } 
+            };
+    </script>
+</body>
+</html>

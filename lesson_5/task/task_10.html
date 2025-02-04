@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>task 10</title>
+</head>
+<body>
+    <script>
+        const minRangeNumber = parseInt(prompt('minRangeNumber', "1"));
+        const maxRangeNumber = parseInt(prompt('maxRangeNumber', "10"));
+        let sum = 0;
+        for (let i = 0; i <= maxRangeNumber; ) {
+        const randNum =
+          minRangeNumber +
+          Math.floor(Math.random() * (maxRangeNumber - minRangeNumber + 1))
+        if (randNum % 2 !== 0) {
+          sum += randNum
+          i++
+        }
+      }
+      document.write(`Sum=${sum}`)
+    </script>
+</body>
+</html>

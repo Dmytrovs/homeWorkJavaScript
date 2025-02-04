@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task 4</title>
+</head>
+<body>
+    <tr></tr>
+    <script>
+        document.write (`
+            <table border="2">
+        `);
+            for (let row = 0; row < 3; row++) {
+                document.write(`<tr>`);
+                    for (let columns = 1; columns <= 7; columns++) {
+                            document.write(`<td>${columns}</td>`);
+                            }
+                document.write(`</tr>`);       
+                }
+        document.write(`
+            </table>
+        `);
+    </script>
+</body>
+</html>
