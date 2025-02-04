@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task-3</title>
+</head>
+
+<body>
+    <script>
+        let minValue = 1;
+        let maxValue = 5;
+        const randomNumbers = minValue + Math.floor(Math.random() * (maxValue - minValue + 1));
+        let userNum = parseInt(prompt('Введіть  число'));
+        if (userNum === randomNumbers) {
+            alert('Ви вгадали');
+        }
+        else {
+            userNum = parseInt(prompt('Ви не вгадали. Введіть  число'));
+            if (userNum === randomNumbers) alert('Ви вгадали');
+            else alert('Ви не вгадали');
+        }
+
+    </script>
+</body>
+
+</html>

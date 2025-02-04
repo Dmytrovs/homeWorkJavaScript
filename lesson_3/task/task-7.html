@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>task-7</title>
+</head>
+
+<body>
+    <!-- <script>
+        const season = parseInt(prompt("Введіть номер місяця, щоб дізнатися, яка зараз пора року"));
+        let result;
+        switch (season) {
+            case 12 :
+            case 1 :
+            case 2 : result = "Зараз зима, одягайтеся тепліше";    
+                break;
+            case 3:
+            case 4:
+            case 5: result = "Зараз весна, вдихніть на повні груди повітря, та не забудьте окуляри!";
+                break;
+            case 6: 
+            case 7:
+            case 8: result = "Зараз літо, насолоджуйтеся та зробіть шоколалний загар вашого тіла!";
+                break;
+            case 9:
+            case 10:
+            case 11: result = "Зараз осінь, робіть золотисті фото та не забувайте парасольку, якщо на вулиці дощ!";
+                break;
+            default: result = "Ви з іншої планети";
+                break;
+        }
+        alert(result);
+    </script> -->
+    <script>
+        // 10.	Знайти найбільше парне число серед 4-х цілих чисел.  (число %2 === 0)
+        // const num1 = parseFloat(prompt('Num1'))
+        // const num2 = parseFloat(prompt('Num2'))
+        // const num3 = parseFloat(prompt('Num3'))
+        // const num4 = parseFloat(prompt('Num4'))
+        // let max = null
+        // if (num1 % 2 === 0) max = num1;
+        // if (num2 % 2 === 0 && (max === null || num2 > max)) max = num2
+        // if (num3 % 2 === 0 && (max === null || num3 > max)) max = num3
+        // if (num4 % 2 === 0 && (max === null || num4 > max)) max = num4
+
+        // if (max != null) {
+        //     document.write(`Найбільше парне, ${max}`)
+        // } else 'парних чисел немає'
+
+        // 11.	Знайти найбільше серед тих які менші за середні арифметичне.
+        // const num1 = parseFloat(prompt('Num1'))
+        // const num2 = parseFloat(prompt('Num2'))
+        // const num3 = parseFloat(prompt('Num3'))
+        // const num4 = parseFloat(prompt('Num4'))
+        // let max = null
+        // let arithmeticMedium = (num1 + num2 + num3 + num4) / 4;
+        // if (num1 < arithmeticMedium && (max === null || num1 > max)) max = num1
+        // if (num2 < arithmeticMedium && (max === null || num2 > max)) max = num2
+        // if (num3 < arithmeticMedium && (max === null || num3 > max)) max = num3
+        // if (num4 < arithmeticMedium && (max === null || num4 > max)) max = num4
+
+        // if (max != null) {
+        //     document.write(`найбільше серед тих які менші за середні арифметичне, ${max}`)
+        // } else { 'немає найбільше серед тих які менші за середні арифметичне'}
+
+        // 12.	Знайти 2 найбільших числа з 4 цілих чисел.
+        // const num1 = parseFloat(prompt('Num1'))
+        // const num2 = parseFloat(prompt('Num2'))
+        // const num3 = parseFloat(prompt('Num3'))
+        // const num4 = parseFloat(prompt('Num4'))
+        // let largestNumberOne
+        // let largestNumberTwo
+        // if (num1 > num2) {
+        //     largestNumberOne = num1
+        //     largestNumberTwo = num2
+        // }   else {
+        //     largestNumberTwo = num1
+        //     largestNumberOne = num2
+        // }
+
+        // if (num3 > largestNumberOne) {
+        //     largestNumberTwo = largestNumberOne
+        //     largestNumberOne = num3
+        // } else if (num3 > largestNumberTwo ) {
+        //     largestNumberTwo = num3
+        // }
+
+
+        //   if (num4 > largestNumberOne) {
+        //         largestNumberTwo = largestNumberOne
+        //         largestNumberOne = num4
+        //     } else if (num4 > largestNumberTwo) {
+        //         largestNumberTwo = num4
+        //     }
+        //     document.write(`2 найбільших числа з 4 цілих чисел це ${largestNumberOne} та ${largestNumberTwo}`);
+
+
+        // 13.	Знайти 2 найменших числа
+        const num1 = parseFloat(prompt('Num1'))
+        const num2 = parseFloat(prompt('Num2'))
+        const num3 = parseFloat(prompt('Num3'))
+
+             let less
+                let more
+                if (num1 < num2) {
+                    less = num1
+                   more = num2
+                }   else {
+                    less = num2
+                    more = num1
+                }
+                    if (num3 < less) {
+                            more = less
+                            less = num3
+                        } else if (num3 < more ) {
+                            more = num3
+                        }
+        document.write(`2 найменші числа  це ${less} та ${more}`);
+            
+    </script>
+</body>
+
+</html>

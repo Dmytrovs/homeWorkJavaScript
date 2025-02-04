@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>task-5</title>
+</head>
+
+<body>
+    <script>
+        const driverCategory = prompt("Введіть вашу категорію водійских прав(A, B, або С англійськими літерами):").toUpperCase();
+        const driverCategoryBike = "Ваша категорія водійских прав дозволяє керувати: МОТОЦИКЛОМ";
+        const driverCategoryCar = "Ваша категорія водійских прав дозволяє керувати: ЛЕГКОВИМ АВТО";
+        const driverCategoryTruck = "Ваша категорія водійских прав дозволяє керувати: ВАНТАЖНИМ АВТОМОБІЛЕМ";
+        const warning = "У вас немає прав для керування транспортом!";
+        if (driverCategory === "A") {
+            alert(driverCategoryBike);
+        } else if (driverCategory === "B") {
+            alert(driverCategoryCar);
+        } else if (driverCategory === "C") {
+            alert(driverCategoryTruck);
+        } else {
+            alert(warning);
+        };
+    </script>
+</body>
+
+</html>
