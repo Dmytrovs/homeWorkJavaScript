@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <script>
+      const numberFirst = parseFloat(prompt("Enter first num:", "0"));
+      const numberSecond = parseFloat(prompt("Enter second num:", "0"));
+      const sum = numberFirst + numberSecond;
+      const production = numberFirst * numberSecond;
+      const share = numberFirst / numberSecond;
+
+      document.write(
+        `<table border="3">
+              <tr>
+                <th>Operation</th>
+                <th>numberFirst</th>
+                <th>numberSecond</th>
+                <th>Result</th>
+              </tr>
+              <tr>
+                <td>Sum</td>
+                <td>${numberFirst}</td>
+                <td>${numberSecond}</td>
+                <td>${sum}</td>
+              </tr>
+              <tr>
+                <td>Production</td>
+                <td>${numberFirst}</td>
+                <td>${numberSecond}</td>
+                <td>${production}</td>
+              </tr>
+              <tr>
+                <td>Share</td>
+                <td>${numberFirst}</td>
+                <td>${numberSecond}</td>
+                <td>${share}</td>
+              </tr>
+           </table>`
+      )
+    </script>
+  </body>
+</html>

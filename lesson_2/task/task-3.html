@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>task-3</title>
+</head>
+<body>
+    <script>
+        const amountProduct = parseFloat(prompt('Кількість товару?', '0'));
+        const costProduct = parseFloat(prompt('Cкільки коштує товар?', '0'));
+        const ValuePercent = 5;
+        const totalCostProduct = costProduct * amountProduct;
+        const ValueAddedTax = (ValuePercent * totalCostProduct) / 100;
+        const resultPdv = totalCostProduct + ValueAddedTax;
+
+        document.write(
+            `
+        <table border="5">
+            <tr>
+                <td>Кількість товару</td>
+                <td>Вартість товару</td>
+                <td>Загальна вартість</td>
+                <td>Вартість з ПДВ 5%</td>
+            </tr>
+            <tr>
+                <td>${amountProduct}</td>
+                <td>${costProduct}</td>
+                <td>${totalCostProduct}</td>
+                <td>${resultPdv}</td>
+            </tr>
+        </table>
+            `
+        )
+    </script>
+</body>
+</html>

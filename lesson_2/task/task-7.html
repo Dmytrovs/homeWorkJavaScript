@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>task-7</title>
+</head>
+
+<body>
+    <script>
+        let minMonthNum = 1,
+            maxMonthNum = 12,
+            minDay = 0,
+            maxDay = 6;
+
+        const randomMonth = minMonthNum + Math.floor(Math.random() * (maxMonthNum - minMonthNum + 1));
+        const randomDay = minDay + Math.floor(Math.random() * (maxDay - minDay + 1));
+        document.write(`випадковий номер місяця: ${randomMonth} та випадковий номер дня: ${randomDay}`)
+    </script>
+</body>
+
+</html>

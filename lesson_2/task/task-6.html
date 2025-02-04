@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>task-6</title>
+</head>
+<body>
+
+    <script>
+        const productName1 = prompt("Введіть назву першого товару:", "Овсянка");
+        const price1 = parseFloat(prompt("Введіть вартість першого товару:", "0"));
+        const quantity1 = parseInt(prompt("Введіть кількість першого товару:", "0"));
+        const totalPrice1 = price1 * quantity1;
+        const productName2 = prompt("Введіть назву другого товару:", "Чай");
+        const price2 = parseFloat(prompt("Введіть вартість другого товару:", "0"));
+        const quantity2 = parseInt(prompt("Введіть кількість другого товару:", "0"));
+        const totalPrice2 = price2 * quantity2;
+        const productName3 = prompt("Введіть назву третього товару:", "Хліб");
+        const price3 = parseFloat(prompt("Введіть вартість третього товару:", "0"));
+        const quantity3 = parseInt(prompt("Введіть кількість третього товару:", "0"));
+        const totalPrice3 = price3 * quantity3;
+        const total = totalPrice1 + totalPrice2 + totalPrice3; 
+        document.write (
+            `
+                <table border="4">
+                    <tr>
+                        <th>Назва товару</th>
+                        <th>Кількість</th>
+                        <th>Ціна за одиницю</th>
+                        <th>Загальна вартість</th>
+                    </tr>
+                    <tr>
+                        <td> ${productName1}</td>
+                        <td> ${quantity1}  </td>   
+                        <td>  ${price1}   </td> 
+                        <td>  ${totalPrice1}  </td>
+                    </tr>
+                    <tr>
+                        <td> ${productName2} </td>
+                        <td> ${quantity2} </td>
+                        <td>  ${price2}  </td>
+                        <td> ${totalPrice2}  </td>
+                    </tr>
+                    <tr>
+                        <td>  ${productName3} </td>
+                        <td> ${quantity3} </td>
+                        <td>${price3} </td>
+                        <td>  ${totalPrice3}  </td>
+                    </tr>
+                    <tr>
+                        <td colspan='3'><strong>Сума чека</strong></td>
+                        <td><strong> ${total}  </strong></td>
+                    </tr>
+                </table>
+            `
+            )
+    </script>
+</body>
+</html>

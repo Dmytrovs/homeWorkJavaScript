@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Задача 0</h1>
+    <p>
+        Задача 0. Обчислити значення виразів <br>
+            1) S1=a+12+b <br>
+            2) S2=a+b2a <br>
+            3) S3=3(a+b)c <br>
+            4) S4=sin⁡(a-b) <br>
+    </p>
+
+    <script>
+        //1)
+        const valueIsOne = parseFloat(prompt("Введіть значення one:"));
+        const valueIstwo = parseFloat(prompt("Введіть значення two:"));
+        const meaningExpressions = parseFloat(valueIsOne + 12 + valueIstwo);
+        document.write(`1) Значення виразу S1:${meaningExpressions}<br>`);
+
+        //2) 
+        const valueOne = parseFloat(prompt("Введіть значення one:"));
+        const valuetwo = parseFloat(prompt("Введіть значення two:"));
+        const a = parseFloat(prompt("Введіть значення a:"));
+        const meaningExpressionsTwo = Math.sqrt((valueOne + valuetwo) / (2 * a));
+        document.write(`2) Значення виразу квадратного корення S2:${meaningExpressionsTwo}<br>`);
+
+        //3)
+        const valueA = parseFloat(prompt("Введіть значення one:"));
+        const valueB = parseFloat(prompt("Введіть значення two:"));
+        const valueC = parseFloat(prompt("Введіть значення three:"));
+        const meaningExpressionsThree = Math.cbrt((valueA + valueB) * valueC);
+        document.write(`3) Значення виразу кубічного корення S3:${meaningExpressionsThree}<br>`);
+
+        //4)
+        const valueOneSinus = parseFloat(prompt("Введіть значення one:"));
+        const valueTwoSinus = parseFloat(prompt("Введіть значення two:"));
+        const meaningExpressionsFour = Math.sin(valueOneSinus - valueTwoSinus);
+        document.write(`4) Значення виразу синус числа S4:${meaningExpressionsFour}<br>`);
+    </script>
+<!--     <p> four
+        2)
+        S2 = Math.sqrt ((a + b) / (2 * a)) <br>
+
+        3)
+        let S3 = 3 * Math.cbrt((a + b) * c) <br>
+
+        4) 
+        let S4 = Math.sin(a - b) <br>
+    </p> -->
+</body>
+</html>

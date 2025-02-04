@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>task-5</title>
+
+</head>
+<body>
+    <script>   
+        const enterSekond = parseInt(prompt('Введіть секунди', '0'));
+        const minutes =  Math.floor((enterSekond % 3600) / 60);
+        const hours = Math.floor(enterSekond / 3600);
+        document.write(`з початку доби пройшло ${enterSekond} секунд, це ${minutes}хвилин та ${hours} годин`);
+    </script>
+</body>
+</html>
