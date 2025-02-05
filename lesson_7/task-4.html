@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Task 4</title>
+</head>
+
+<body>
+  <script>
+    // Задача 4. Створити функцію, яка для 3 заданих чисел знаходить одночасно декілька результатів: кількість парних, кількість додатних, кількість більших за 100.
+
+    let a = parseInt(prompt("введіть число 1"));
+    let b = parseInt(prompt("введіть число 2"));
+    let c = parseInt(prompt("введіть число 3"));
+
+    function findRezalt(a, b, c) {
+      let numberPaired = 0
+      let numberAdditional = 0
+      let numberLargerForOneHundred = 0
+      if (a % 2 == 0) numberPaired++
+      if (a > 0) numberAdditional++
+      if (a > 0) numberLargerForOneHundred++
+
+      if (b % 2 == 0) numberPaired++;
+      if (b > 0) numberAdditional++
+      if (b > 0) numberLargerForOneHundred++;
+
+      if (c % 2 == 0) numberPaired++
+      if (c > 0) numberAdditional++
+      if (c > 0) numberLargerForOneHundred++;
+
+      return `кількість парних = ${numberPaired} <br> кількість додатних = ${numberAdditional} <br> кількість більших за 100 =  ${numberLargerForOneHundred} <br>`;
+    }
+
+    document.write(`${findRezalt(a, b, c)}`);
+  </script>
+</body>
+
+</html>
