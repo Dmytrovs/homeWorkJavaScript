@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Task 10</title>
+</head>
+
+<body>
+  <script>
+    // Задача 10. Дано покази температур (довільна кількість). Розробити функцію, яка дозволить знайти середнє значення для додатних показів температури.
+
+    let userNumber = parseInt(prompt("Скільки питати раз?"));
+    function calculateNumberNegativeShows(userNumber) {
+      let usNum = userNumber;
+      let counter = 0;
+      let counterPositive = 0;
+      let mediumValue = 0;
+      for (let i = 0; i < usNum; i++) {
+        let userTemperature = parseInt(prompt("Яка температура?"));
+        if (userTemperature < 0) {
+          document.write(`Відємна температура ${userTemperature} <br>`);
+          counter++;
+        } else if (userTemperature > 0) {
+          mediumValue += userTemperature;
+          counterPositive++;
+        }
+      }
+      let sum = mediumValue / counterPositive;
+      document.write(
+        `середнє значення для додатних показів температури ${sum} <br>`
+      );
+      return counter;
+    }
+
+    document.write(
+      `Усього було введено ${userNumber} раз <br>  Кількість відЄмних ${calculateNumberNegativeShows(
+        userNumber
+      )} `
+    );
+
+  </script>
+</body>
+
+</html>
