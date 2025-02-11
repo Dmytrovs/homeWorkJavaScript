@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Task 3</title>
+</head>
+
+<body>
+  <script>
+    // Задача 3. Дано масив імен учнів. З’ясувати скільки разів зустрічається ім’я «Іван».
+    function getNamesStudents(peopleNumber) {
+      let arr = [];
+      for (let i = 0; i < peopleNumber; i++) {
+        let peopleName = prompt(
+          `Як вас звати людина в черзі № ${i + 1}?`
+        ).toLowerCase();
+        arr.push(peopleName);
+      }
+      return arr;
+    }
+
+    function findTimesMeetsNameIvan(...names) {
+      let count = 0;
+      for (let i = 0; i < names.length; i++) {
+        if (names[i] == "іван") {
+          count++;
+        }
+      }
+      return count;
+    }
+
+    let peopleNum = parseInt(prompt("Скільки буде людей?"));
+
+    let nameStudent = getNamesStudents(peopleNum);
+    let nameIvan = findTimesMeetsNameIvan(...nameStudent);
+
+    document.write(
+      ` Всі імена ${nameStudent} <br> Скільки разів зустрічається ім’я «Іван» = ${nameIvan}`
+    );
+
+  </script>
+</body>
+
+</html>

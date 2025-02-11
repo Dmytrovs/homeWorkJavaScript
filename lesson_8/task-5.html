@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Task 5</title>
+</head>
+
+<body>
+  <script>
+    // Задача 5. Дано послідовність оцінок учня. Підрахувати кількість:
+    // 1)	двійок
+    // 2)	кількість хороших оцінок (добре, відмінно);
+    // 3)	кількість оцінок, які нижче середнього.
+    function getSequenceGradesStudent(userSubj) {
+      let arr = [];
+      for (let i = 0; i < userSubj; i++) {
+        let evaluationObjects = parseInt(prompt(`Яка оцінка предмета №${i + 1}`));
+        arr.push(evaluationObjects);
+      }
+      return arr;
+    }
+
+    function averageCoupleTho(...gradesStudent) {
+      let count = 0;
+      for (let i = 0; i < gradesStudent.length; i++) {
+        if (gradesStudent[i] >= 2 && gradesStudent[i] < 3) {
+          count++;
+        }
+      }
+      return count;
+    }
+
+    function averageCoupleFors(...gradesStudent) {
+      let count = 0;
+      for (let i = 0; i < gradesStudent.length; i++) {
+        if (gradesStudent[i] >= 3 && gradesStudent[i] < 5) {
+          count++;
+        }
+      }
+      return count;
+    }
+
+    function averageCoupleFives(...gradesStudent) {
+      let count = 0;
+      for (let i = 0; i < gradesStudent.length; i++) {
+        if (gradesStudent[i] === 5) {
+          count++;
+        }
+      }
+      return count;
+    }
+
+    function numberGradesLowerMedium(...gradesStudent) {
+      let count = 0;
+      let sum = 0;
+      let countLow = 0;
+      for (let i = 0; i < gradesStudent.length; i++) {
+        sum += gradesStudent[i];
+        count++;
+      }
+      let mediumSum = sum / count;
+      for (let k = 0; k < gradesStudent.length; k++) {
+        if (mediumSum > gradesStudent[k]) {
+          countLow++;
+        }
+      }
+      return countLow;
+    }
+
+    let userSubjects = parseInt(prompt("Скільки буде предметів?"));
+
+    let getAverageRatingStudent = getSequenceGradesStudent(userSubjects);
+    let coupleTho = averageCoupleTho(...getAverageRatingStudent);
+    let coupleFors = averageCoupleFors(...getAverageRatingStudent);
+    let coupleFives = averageCoupleFives(...getAverageRatingStudent);
+    let sumLowerMedium = numberGradesLowerMedium(...getAverageRatingStudent);
+    document.write(`Послідовність оцінок учня: ${getAverageRatingStudent} <br>
+  1)	двійок: ${coupleTho}<br>
+  2)	кількість хороших оцінок добре: ${coupleFors}<br>
+  3)	кількість хороших оцінок відмінно: ${coupleFives}<br>
+  4)	кількість оцінок, які нижче середнього: ${sumLowerMedium}<br>
+  `);
+  </script>
+</body>
+
+</html>

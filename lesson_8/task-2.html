@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Task 2</title>
+</head>
+
+<body>
+  <script>
+    // Задача 2. Дано масив, який зберігає кількість відвідувачів магазину протягом тижня. Вивести на екран:
+    // ●	номери днів, протягом яких кількість відвідувачів була меншою за 20;
+    // ●	номер дня, коли кількість відвідувачів була мінімальною;
+    // ●	номер дня, коли кількість відвідувачів була максимальною;
+    // ●	загальну кількість клієнтів у робочі дні та окремо загальну кількість днів на вихідних.
+    function getNumberVisitorsStoreWeek(userNumberWeek) {
+      let arr = [];
+      for (let i = 1; i <= 7; i++) {
+        let userNumberPeople = parseInt(
+          prompt(`Введіть кількість відвідувачів за день № ${i}`)
+        );
+        arr.push(userNumberPeople);
+      }
+      return arr;
+    }
+
+    // ●	номери днів, протягом яких кількість відвідувачів була меншою за 20;
+    function daysPeopleLessTwenty(...daysPeople) {
+      let countDay = [];
+      for (let i = 0; i <= daysPeople.length; i++) {
+        if (daysPeople[i] < 20) {
+          countDay.push(i + 1);
+        }
+      }
+      return countDay;
+    }
+
+    // ●	номер дня, коли кількість відвідувачів була мінімальною;
+    function dayNumberMinPeople(...people) {
+      let minPeople = Math.min(...people);
+      return minPeople;
+    }
+
+    // ●	номер дня, коли кількість відвідувачів була максимальною;
+    function dayNumberMaxPeople(...people) {
+      let maxPeople = Math.max(...people);
+      return maxPeople;
+    }
+
+    // ●	загальну кількість клієнтів у робочі дні та окремо загальну кількість днів на вихідних.
+    function peopleWorksDay(...worksDay) {
+      let sum = 0;
+      for (let i = 0; i < worksDay.length; i++) {
+        if (i >= 0 && i <= 5) {
+          sum += worksDay[i];
+        }
+      }
+      return sum;
+    }
+
+    function peopleWekendDay(...wekendDay) {
+      let sum = 0;
+      for (let i = 0; i < wekendDay.length; i++) {
+        if (i >= 5 && i <= 7) {
+          sum += wekendDay[i];
+        }
+      }
+      return sum;
+    }
+
+    let totalGetPeopleWeek = getNumberVisitorsStoreWeek();
+    const dayPeopleMinTwenty = daysPeopleLessTwenty(...totalGetPeopleWeek);
+    const minPeopleDay = dayNumberMinPeople(...totalGetPeopleWeek);
+    const maxPeopleDay = dayNumberMaxPeople(...totalGetPeopleWeek);
+    const totalWorksDay = peopleWorksDay(...totalGetPeopleWeek);
+    const totalWekendksDay = peopleWekendDay(...totalGetPeopleWeek);
+    document.write(`Кількість відвідувачів магазину протягом тижня: ${totalGetPeopleWeek} <br>
+  Номери днів, протягом яких кількість відвідувачів була меншою за 20: ${dayPeopleMinTwenty} <br>
+  Номер дня, коли кількість відвідувачів була мінімальною: ${minPeopleDay} <br>
+  Номер дня, коли кількість відвідувачів була максимальною: ${maxPeopleDay} <br>
+  Загальну кількість клієнтів у робочі дні ${totalWorksDay} та окремо загальну кількість днів на вихідних ${totalWekendksDay}
+  `);
+
+  </script>
+</body>
+
+</html>

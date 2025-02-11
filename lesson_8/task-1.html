@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Task 1</title>
+</head>
+<body>
+  <script>
+    // Задача 1. Дано масив, який містить оцінки з К предметів. Знайти середній бал і з’ясувати до якої категорії він відноситься (відмінник, двійочник (має хоча би одну двійку), хорошист (оцінки добре і відмінно), трійочник(є хоча би одна трійка)).
+
+    function getAverageRating(quantityItem) {
+      let arr = [];
+      for (let i = 0; i < quantityItem; i++) {
+        let ratingStudens = parseInt(prompt(`Яка оцінка предмета № ${i + 1}`));
+        arr.push(ratingStudens);
+      }
+      return arr;
+    }
+
+    function totalSum(...sumMedium) {
+      let count = 0;
+      let sum = 0;
+      for (let i = 0; i < sumMedium.length; i++) {
+        sum += sumMedium[i];
+        count++;
+      }
+      return sum / count;
+    }
+
+    function categoryStudent(...estimates) {
+      let rating = "";
+      let minNumber = Math.min(...estimates);
+      switch (minNumber) {
+        case 1:
+        case 2:
+        case 3:
+        case 4:
+        case 5:
+          if (minNumber === 2) {
+            rating = "двійочник";
+          } else if (minNumber === 3) {
+            rating = "трійочник";
+          } else if (minNumber === 4) {
+            rating = "хорошист";
+          } else if (minNumber === 5) {
+            rating = "Відміник";
+          } else rating = "Відчислити";
+          break;
+        default:
+          break;
+      }
+
+      return rating;
+    }
+
+    let quantityItem = parseInt(prompt("Cкільки предметів?"));
+
+    let getAverageRatingsShov = getAverageRating(quantityItem);
+
+    let showTotalSum = totalSum(...getAverageRatingsShov);
+
+    let showCategory = categoryStudent(...getAverageRatingsShov);
+
+    document.write(` Середній бал: ${showTotalSum}`);
+    document.write(` відноситься  до ${showCategory}`);
+
+  </script>
+</body>
+
+</html>

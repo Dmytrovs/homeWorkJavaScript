@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Task 4</title>
+</head>
+
+<body>
+  <script>
+    // Задача 4. Дано послідовність номерів автомобілів. Підрахувати кількість номерів, які :
+    // •	починаються на букву «А»;
+    // •	перша і остання літери співпадають;
+    // •	складаються з більше ніш 5 символів;
+    function getNamesCar(quantityCar) {
+      let arr = [];
+      for (let i = 0; i < quantityCar; i++) {
+        let numberCar = prompt(`Номер автомобіля №${i + 1}`).toUpperCase();
+        arr.push(numberCar);
+      }
+      return arr;
+    }
+
+    function findLetterA(...latterA) {
+      let count = 0;
+      for (let i = 0; i < latterA.length; i++) {
+        if (latterA[i][0] == "A") {
+          count++;
+        }
+      }
+      return count;
+    }
+
+    function firstLatterLastCorrect(...lateerCorrect) {
+      let count = 0;
+      for (let i = 0; i < lateerCorrect.length; i++) {
+        if (lateerCorrect[i][0] === lateerCorrect[i].at(-1)) {
+          count++;
+        }
+        return count;
+      }
+    }
+
+    function quantitySymbolsMoreFive(...symbols) {
+      let count = 0;
+      for (let i = 0; i < symbols.length; i++) {
+        if (symbols[i].length > 5) {
+          count++;
+        }
+      }
+      return count;
+    }
+
+    let numCar = parseInt(prompt("Скільки авто?"));
+
+    let nameCar = getNamesCar(numCar);
+    let latterToA = findLetterA(...nameCar);
+
+    let correctLaterCar = firstLatterLastCorrect(...nameCar);
+    let moreSymbol = quantitySymbolsMoreFive(...nameCar);
+    document.write(`номера: ${nameCar} <br>
+   К-сть авто, яка починаються на букву «А»: ${latterToA} <br>
+   перша і остання літери співпадають: ${correctLaterCar} <br>
+   Номер складаються з більше ніш 5 символів: ${moreSymbol}
+   `);
+
+  </script>
+</body>
+
+</html>
