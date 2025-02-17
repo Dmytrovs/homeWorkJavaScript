@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Task 7</title>
+</head>
+
+<body>
+  <script>
+    // 7.Дано масив цін. Змінити цей масив так, що на ціни товарів, які більші за 1000 грн. дати 30% знижки.
+    let arrayNumber = [2500, 3210, 1054, 10454, 8984, 300, 250, 1001]
+    let discountPercentage = 30
+    let newPrices = arrayNumber.map((element, index, baseArr) => {
+      if (element > 1000) {
+        return (element - (baseArr[index] / 100) * discountPercentage).toFixed(2)
+      } else {
+        return element
+      }
+    })
+    arrayNumber.forEach((element, index, baseArr) => {
+      if (element > 1000) {
+        baseArr[index] = (baseArr[index] / 100 * discountPercentage).toFixed(2)
+      }
+    })
+    document.write(arrayNumber)
+  </script>
+</body>
+
+</html>

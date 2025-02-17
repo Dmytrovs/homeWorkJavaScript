@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Task 8</title>
+</head>
+
+<body>
+  <script>
+    // 8. Дано масив номерів авто. Сформувати новий масив тих, які починаються на «А»
+
+    let carNumbers = ["AB1234CD", "EF5678GH", "IJ9012KL", "MN3456OP", "QR7890ST", "AA7563RS"];
+
+    const resultCar = carNumbers.filter((element, index, baseArr) => {
+      if (baseArr[index].at(0) == 'A') {
+        return element
+      }
+    })
+
+    document.write(resultCar)
+  </script>
+</body>
+
+</html>

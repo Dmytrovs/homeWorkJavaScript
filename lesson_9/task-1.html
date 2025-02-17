@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Task 1</title>
+</head>
+
+<body>
+  <script>
+    // 1. Користувач вводить кількість елементів. Створити масив, що складається з вказаної кількості елементів заповнених нулями.
+    let numberItems = parseInt(prompt("кількість елементів"));
+    let arr = [];
+    function createItemArr(numberItems, arr) {
+      for (let i = 0; i < numberItems; i++) {
+        arr.push(0);
+      }
+      return arr;
+    }
+    let arrUser = createItemArr(numberItems, arr);
+    document.write(arrUser);
+  </script>
+</body>
+
+</html>

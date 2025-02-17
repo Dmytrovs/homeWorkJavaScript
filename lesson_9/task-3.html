@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Task 3</title>
+</head>
+
+<body>
+  <script>
+    // 3. Користувач вводить кількість елементів. Створити масив, у якому перші 5 елементів заповнені 1-цями, а інші до кінця масиву заповнені 7-ками.
+    let numberUser = parseInt(prompt("кількість елементів"));
+    let arreyNumber = []
+
+    function greatingNumber(numberUser, arreyNumber) {
+      for (let i = 0; i < numberUser; i++) {
+        arreyNumber.push(7)
+      }
+      return arreyNumber.fill(1, 0, 5)
+    }
+
+    document.write(greatingNumber(numberUser, arreyNumber))
+  </script>
+</body>
+
+</html>

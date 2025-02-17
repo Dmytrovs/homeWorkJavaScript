@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Task 4</title>
+</head>
+
+<body>
+  <script>
+    // 4.Дано масив елементів. Вивести на екран елементи, що більші за 100
+
+    let arrayNumber = [21, 213, 34, 56, 101, 1994, 4]
+
+    function numberMore(arrayNumber) {
+      let moreScore = []
+      for (const item of arrayNumber) {
+        if (item > 100) {
+          moreScore.push(item)
+        }
+      }
+      return moreScore
+    }
+
+    document.write(numberMore(arrayNumber))
+
+
+  </script>
+</body>
+
+</html>

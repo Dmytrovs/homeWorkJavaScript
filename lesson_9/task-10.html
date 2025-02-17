@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Task 10</title>
+</head>
+
+<body>
+  <script>
+    // 10. Дано масив цін у грн. Податок складає 20%. Сформувати масив, який буде містити величину сплаченого податку у грн.
+
+    let arrayNumber = [2500, 3210, 1054, 10454, 8984, 300, 250, 1001, 10]
+
+    const tax = 20
+
+    const newPrices = arrayNumber.map((element) => element / 100 * tax)
+    document.write(newPrices)
+    let sum = 0
+
+    function containAmountOfTaxPaid(arrayNumber) {
+      let sum = 0
+      let newPrices = []
+      arrayNumber.forEach(element => {
+        sum += element
+      })
+      return newPrices += sum / 100 * tax
+
+    }
+
+    const resultTax = containAmountOfTaxPaid(arrayNumber)
+    document.write(resultTax)
+  </script>
+</body>
+
+</html>
