@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Task 10</title>
+</head>
+
+<body>
+  <script>
+    //10)Знайти першу ціну, що більше за 1000
+    function generateNum(min = 1, max = 10000, quantity = 15) {
+      let arr = [];
+      for (let index = 0; index < quantity; index++) {
+        let numRandom = Math.floor(Math.random() * (max - min + 1) + min);
+        arr.push(numRandom);
+      }
+      return arr;
+    }
+
+    let prices = generateNum();
+    let newPrice = prices.find((evaluation) => evaluation > 1000);
+    document.write(`Перша ціна, що більше за 1000: ${newPrice}`);
+  </script>
+</body>
+
+</html>
