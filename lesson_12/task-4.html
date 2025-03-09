@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Task 4</title>
+</head>
+
+<body>
+  <script>
+    // Задача 4. Для розглянутих методів сортування спробувати вивести етапи сортування шляхом виведення відповідних таблиць за зразком .
+    // Тобто кожного разу після обміну елементів вивести поточний стан масиву на екран (стрілки не потрібні).
+    function generateRandomNum(min = 1, max = 30, quantity = 30) {
+      let random = [];
+      for (let i = 0; i < quantity; i++) {
+        let numRandom = Math.floor(Math.random() * (max - min + 1) + min);
+        random.push(numRandom);
+      }
+      return random;
+    }
+    const arr = generateRandomNum();
+
+    document.write(`Сортування бульбашкою: <br>`);
+    function sortingBubble(arr) {
+      let arrBuble = [...arr];
+      let changed;
+      let comparison = 0;
+      let exchange = 0;
+      do {
+        changed = false;
+        for (let i = 0; i < arrBuble.length; i++) {
+          comparison++;
+          if (arrBuble[i - 1] > arrBuble[i]) {
+            let tmp = arrBuble[i - 1];
+            arrBuble[i - 1] = arrBuble[i];
+            arrBuble[i] = tmp;
+            changed = true;
+            exchange++;
+            document.write(`${arrBuble} <br>`);
+          }
+        }
+      } while (changed);
+      return [arrBuble, comparison, exchange];
+    }
+
+    const [arrBubleResult, comparisonBubleResult, exchangeBubleResult] =
+      sortingBubble(arr);
+    document.write(`Cортування змішуванням: <br>`);
+    function shakerSort(arr) {
+      let comparison = 0;
+      let exchange = 0;
+      let leftIndex = 0;
+      let arrShaker = [...arr];
+      let rightIndex = arrShaker.length - 1;
+      while (leftIndex < rightIndex) {
+        let changed = false;
+        for (let i = leftIndex; i <= rightIndex; i++) {
+          comparison++;
+          if (arrShaker[i - 1] > arrShaker[i]) {
+            let tmp = arrShaker[i - 1];
+            arrShaker[i - 1] = arrShaker[i];
+            arrShaker[i] = tmp;
+            changed = true;
+            exchange++;
+            document.write(`${arrShaker} <br>`);
+          }
+        }
+        rightIndex--;
+        if (changed === false) break;
+        changed = false;
+        for (let j = rightIndex; j > leftIndex; j--) {
+          comparison++;
+          if (arrShaker[j - 1] > arrShaker[j]) {
+            let tmp = arrShaker[j - 1];
+            arrShaker[j - 1] = arrShaker[j];
+            arrShaker[j] = tmp;
+            changed = true;
+            exchange++;
+            document.write(`${arrShaker} <br>`);
+          }
+        }
+        leftIndex++;
+        if (changed === false) break;
+      }
+      return [arrShaker, exchange, comparison];
+    }
+    const [arrResultShaker, exchangeResultShaker, comparisonResultShaker] =
+      shakerSort(arr);
+
+    document.write(`Сортування включеннями: <br>`);
+
+    function insertSort(arr) {
+      let comparisonInsert = 0;
+      let exchangeInsert = 0;
+      let arrInsert = [...arr];
+      for (let k = 1; k < arrInsert.length; k++) {
+        let currentElement = arrInsert[k];
+        let i = k - 1;
+        while (i >= 0 && arrInsert[i] > currentElement) {
+          comparisonInsert++;
+          arrInsert[i + 1] = arrInsert[i];
+          i = i - 1;
+          exchangeInsert++;
+          document.write(`${arrInsert} <br>`);
+        }
+        arrInsert[i + 1] = currentElement;
+        comparisonInsert++;
+      }
+      return [arrInsert, comparisonInsert, exchangeInsert];
+    }
+    const [arrInsertResult, comparisonInsertResult, exchangeInsertResult] =
+      insertSort(arr);
+
+  </script>
+</body>
+
+</html>

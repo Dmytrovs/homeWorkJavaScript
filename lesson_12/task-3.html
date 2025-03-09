@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Task 3</title>
+</head>
+
+<body>
+  <script>
+    // Задача 3. Дано масив 30 випадкових цілих чисел. Підрахувати скільки було обмінів та порівнянь чисел під час сортування включеннями.
+    function generateRandomNum(min = 1, max = 30, quantity = 30) {
+      let random = [];
+      for (let i = 0; i < quantity; i++) {
+        let numRandom = Math.floor(Math.random() * (max - min + 1) + min);
+        random.push(numRandom);
+      }
+      return random;
+    }
+    let arr = generateRandomNum();
+
+    function insertSort(arr) {
+      let comparisonInsert = 0;
+      let exchangeInsert = 0;
+      for (let k = 1; k < arr.length; k++) {
+        let currentElement = arr[k];
+        let i = k - 1;
+        while (i >= 0 && arr[i] > currentElement) {
+          comparisonInsert++;
+          arr[i + 1] = arr[i];
+          i = i - 1;
+          exchangeInsert++;
+        }
+        arr[i + 1] = currentElement;
+        comparisonInsert++;
+      }
+      return [arr, comparisonInsert, exchangeInsert];
+    }
+    const [arrInsertResult, comparisonInsertResult, exchangeInsertResult] =
+      insertSort(arr);
+    document.write(
+      `Сортування включеннями: ${arrInsertResult}<br> Кількість порівнянь: ${comparisonInsertResult} <br> Кількість обмінів: ${exchangeInsertResult}`
+    );
+  </script>
+</body>
+
+</html>

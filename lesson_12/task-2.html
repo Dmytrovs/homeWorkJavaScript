@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Task 2</title>
+</head>
+
+<body>
+  <script>
+    // Задача 2. Дано масив 30 випадкових цілих чисел. Підрахувати скільки було обмінів та порівнянь чисел під час сортування змішуванням.
+    function generateRandomNum(min = 1, max = 30, quantity = 30) {
+      let random = [];
+      for (let i = 0; i < quantity; i++) {
+        let numRandom = Math.floor(Math.random() * (max - min + 1) + min);
+        random.push(numRandom);
+      }
+      return random;
+    }
+    let arr = generateRandomNum();
+    function shakerSort(arr) {
+      let comparison = 0;
+      let exchange = 0;
+      let leftIndex = 0;
+      let rightIndex = arr.length - 1;
+      while (leftIndex < rightIndex) {
+        let changed = false;
+        for (let i = leftIndex; i <= rightIndex; i++) {
+          comparison++;
+          if (arr[i - 1] > arr[i]) {
+            let tmp = arr[i - 1];
+            arr[i - 1] = arr[i];
+            arr[i] = tmp;
+            changed = true;
+            exchange++;
+          }
+        }
+        rightIndex--;
+        if (changed === false) break;
+        changed = false;
+        for (let j = rightIndex; j > leftIndex; j--) {
+          comparison++;
+          if (arr[j - 1] > arr[j]) {
+            let tmp = arr[j - 1];
+            arr[j - 1] = arr[j];
+            arr[j] = tmp;
+            changed = true;
+            exchange++;
+          }
+        }
+        leftIndex++;
+        if (changed === false) break;
+      }
+      return [arr, exchange, comparison];
+    }
+    let [arrResultShaker, exchangeResultShaker, comparisonResultShaker] =
+      shakerSort(arr);
+
+    document.write(
+      `Сортування змішуванням: ${arrResultShaker}<br> Кількість порівнянь: ${comparisonResultShaker} <br> Кількість обмінів: ${exchangeResultShaker}`
+    );
+  </script>
+</body>
+
+</html>

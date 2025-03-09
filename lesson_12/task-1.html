@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Task 1</title>
+</head>
+
+<body>
+  <script>
+    // Задача 1. Дано масив 30 випадкових цілих чисел. Підрахувати скільки було обмінів та порівнянь чисел під час сортування  бульбашкою
+    function generateRandomNum(min = 1, max = 30, quantity = 30) {
+      let random = [];
+      for (let i = 0; i < quantity; i++) {
+        let numRandom = Math.floor(Math.random() * (max - min + 1) + min);
+        random.push(numRandom);
+      }
+      return random;
+    }
+    let arr = generateRandomNum();
+
+    function sortingBubble(arr) {
+      let changed;
+      let comparison = 0;
+      let exchange = 0;
+      do {
+        changed = false;
+        for (let i = 0; i < arr.length; i++) {
+          comparison++;
+          if (arr[i - 1] > arr[i]) {
+            let tmp = arr[i - 1];
+            arr[i - 1] = arr[i];
+            arr[i] = tmp;
+            changed = true;
+            exchange++;
+          }
+        }
+      } while (changed);
+      return [arr, comparison, exchange];
+    }
+
+    const [arrBubleResult, comparisonBubleResult, exchangeBubleResult] = sortingBubble(arr);
+
+    document.write(
+      `Сортування  бульбашкою: ${arrBubleResult}<br> Кількість порівнянь: ${comparisonBubleResult} <br> Кількість обмінів: ${exchangeBubleResult}`
+    );
+  </script>
+</body>
+
+</html>
