@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Task 7</title>
+</head>
+
+<body>
+  <script>
+    // Задача 7. Тренажер додавання. Кожні 10 секунд користувачу задають випадковий приклад з додавання двох цифр і робиться перевірка.
+    function userRandomeXample() {
+      let firstRandomNumber = Math.floor(Math.random() * (100 - 1 + 1) + 1);
+      let secondRandomNumber = Math.floor(Math.random() * (100 - 1 + 1) + 1);
+      let addingTwoDigits = firstRandomNumber + secondRandomNumber;
+      alert(`firstNum: ${firstRandomNumber} + secondNum: ${secondRandomNumber}`);
+      let userAnswer = parseInt(prompt("Введіть результат"));
+      if (addingTwoDigits === userAnswer) {
+        alert(
+          `Правильно firstNum ${firstRandomNumber} + secondNum${secondRandomNumber} = ${addingTwoDigits}`
+        );
+      } else {
+        alert(
+          `Неправильно ви помилились firstNum ${firstRandomNumber} + secondNum ${secondRandomNumber} = ${addingTwoDigits}`
+        );
+      }
+      setTimeout(userRandomeXample, 10000);
+    }
+    userRandomeXample();
+
+  </script>
+</body>
+
+</html>
