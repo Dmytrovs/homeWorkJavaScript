@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Task 1</title>
+</head>
+
+<body>
+  <script>
+    // Задача 1. Описати масив об’єктів – сайтів розроблених компанією з такими властивостями
+    // ----- Властивості ------
+    // -	назва компанії на час розробки (назву періодично змінюють)
+    // -	власник компанії
+    // -	споснсори (масив спонсорів)
+    //              * прізвище спонсора
+    //       * ім’я  спонсора
+    //       * сума вкладень спонсора
+    // -	рік випуску
+    // -	вартість сайту
+
+    let productSites = [
+      {
+        nameCompany: "DevCorp",
+        ownerCompany: "Timothy Donald Cook",
+        sponsors: [
+          {
+            sponsorLastName: "Shevchenko",
+            sponsorName: "Pavlo",
+            sponsorInvestments: 40000,
+          },
+          {
+            sponsorLastName: "Oliver",
+            sponsorName: "Jake",
+            sponsorInvestments: 97000,
+          },
+        ],
+        yearRelease: 2021,
+        costSite: 306500,
+      },
+      {
+        nameCompany: "WebSolutions",
+        ownerCompany: "James Taylor",
+        sponsors: [
+          {
+            sponsorLastName: "Wilson",
+            sponsorName: "Martin",
+            sponsorInvestments: 60000,
+          },
+          {
+            sponsorLastName: "Anderson",
+            sponsorName: "Liam",
+            sponsorInvestments: 560780,
+          },
+        ],
+        yearRelease: 2005,
+        costSite: 760000,
+      },
+      {
+        nameCompany: "ProfiVisits",
+        ownerCompany: "Fasr John",
+        sponsors: [
+          {
+            sponsorLastName: "Monica",
+            sponsorName: "Spets",
+            sponsorInvestments: 60000,
+          },
+          {
+            sponsorLastName: "Georgi",
+            sponsorName: "Chain",
+            sponsorInvestments: 560780,
+          },
+        ],
+        yearRelease: 2024,
+        costSite: 9990,
+      },
+    ];
+
+    // Знайти:
+    // 1) загальну вартість усіх сайтів
+    const totalCost = productSites.reduce(
+      (prevSum, product) => prevSum + product.costSite,
+      0
+    );
+    document.writeln(`Загальна вартість усіх сайтів: ${totalCost}<br><br>`);
+
+    // 2) кількість сайтів, що було зроблено між 2000 та 2009 рр.
+    const numberSitesMade = productSites.reduce(
+      (prevElement, el) =>
+        el.yearRelease >= 2000 && el.yearRelease <= 2009
+          ? prevElement + 1
+          : prevElement,
+      0
+    );
+    document.writeln(
+      ` Кількість сайтів, що було зроблено між 2000 та 2009 рр. : ${numberSitesMade}<br><br>`
+    );
+
+    // 3) кількість сайтів, де сума спонсорських вкладень була більшою за 100000
+    const amountInvestmentSitesMore = productSites.reduce((prevCount, site) => {
+      const totalInvest = site.sponsors.reduce((sum, spons) => {
+        return sum + spons.sponsorInvestments;
+      }, 0);
+      if (totalInvest > 100000) {
+        return prevCount + 1;
+      }
+      return prevCount;
+    }, 0);
+
+    document.writeln(
+      `Кількість сайтів, де сума спонсорських вкладень була більшою за 100000 : ${amountInvestmentSitesMore}<br><br>`
+    );
+
+    // 4) створити загальний список усіх спонсорів (поки можуть повторюватись, просто зібрати усі у масив)
+    let newListArrSponsors = [];
+    for (const company of productSites) {
+      let totalListAllSponsors = company.sponsors.reduce((prevSpon, spon) => {
+        return [...prevSpon, `${spon.sponsorLastName}  ${spon.sponsorName}`];
+      }, []);
+      newListArrSponsors.push(totalListAllSponsors);
+    }
+
+    document.writeln(`Загальний список усіх спонсорів: ${newListArrSponsors}<br><br>`);
+
+    // 5) знайти рік, коли прибуток був найбільшим
+    const yearMostProfit = productSites.reduce((prevYear, curent) => {
+      if (curent.costSite > prevYear.costSite) {
+        return curent;
+      }
+      return prevYear;
+    }).yearRelease;
+    document.writeln(`Рік, коли прибуток був найбільшим: ${yearMostProfit}<br><br> `);
+
+    // 6) упорядкувати список за спаданням прибутку
+    let listDecreaseProfit = productSites.sort((el1, el2) => {
+      if (el1.costSite < el2.costSite) return 1;
+      if (el1.costSite > el2.costSite) return -1;
+      else return 0;
+    });
+    document.writeln(`Список за спаданням прибутку: ${JSON.stringify(listDecreaseProfit)}<br><br>`);
+
+    // 7) Створити 2 окремих списки з копіями об’єктів, що містять сайти з вартість до 10000 і більше 10000
+    const sitesFromCostTo10000 = Object.assign(
+      productSites.filter((costTo) => costTo.costSite < 10000)
+    );
+    const sitesWithCostMoreThan10000 = Object.assign(
+      productSites.filter((costMore) => costMore.costSite > 10000)
+    );
+
+    document.writeln(
+      `Сайти з вартісю до 10000: ${JSON.stringify(
+        sitesFromCostTo10000
+      )} <br><br> Сайти з вартістю більше 10000: ${JSON.stringify(
+        sitesWithCostMoreThan10000
+      )}`
+    );
+
+  </script>
+</body>
+
+</html>

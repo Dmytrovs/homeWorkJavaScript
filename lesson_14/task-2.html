@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Task 2</title>
+</head>
+
+<body>
+  <script>
+    // Задача 2. Розробити функцію, у яку передають об’єкт (день, місяць, рік). Визначити, який буде рік через N місяців.
+
+    let userDate = {
+      day: 1,
+      month: 1,
+      year: 2024,
+    };
+
+    function getYearWillThroughMonth({ year }, N) {
+      return year + Math.floor(N / 12);
+    }
+
+    document.writeln(
+      `Який буде рік через 30 місяців: ${getYearWillThroughMonth(userDate, 30)}`
+    );
+
+  </script>
+</body>
+
+</html>
