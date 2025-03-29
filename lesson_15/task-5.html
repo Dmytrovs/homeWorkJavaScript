@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Task 5</title>
+</head>
+
+<body>
+  <script>
+    // Задача 5. Розробити клас «Керівник танців»
+    // Поля	Масив імен хлопців
+    // Масив імен дівчат
+    // Методи	Метод випадкового вибору імені хлопця
+    // Метод випадкового вибору імені дівчини
+    // Метод виведення пари для танців
+    // Метод run , який ініціює через кожні 5 секунд виведення нової пари для танців
+
+    class DanceHead {
+      constructor(initialnamesBoys, initialnamesGirls) {
+        this.namesBoys = initialnamesBoys;
+        this.namesGirls = initialnamesGirls;
+        this.randBoy = null;
+        this.randGirl = null;
+      }
+
+      randomChoiceBoysName() {
+        let randomIndexBoy = Math.floor(Math.random() * this.namesBoys.length);
+        this.randBoy = this.namesBoys[randomIndexBoy];
+      }
+
+      randomChoiceGirlName() {
+        let randomIndexGirl = Math.floor(Math.random() * this.namesGirls.length);
+        this.randGirl = this.namesGirls[randomIndexGirl];
+      }
+
+      bringingCoupleDancing() {
+        alert(`Пара для танців ${this.randBoy} та ${this.randGirl}`);
+      }
+
+      run() {
+        const swowCouple = () => {
+          this.randomChoiceBoysName();
+          this.randomChoiceGirlName();
+          this.bringingCoupleDancing();
+          setTimeout(swowCouple, 5000);
+        };
+        swowCouple();
+      }
+    }
+
+    const showDanceHead = new DanceHead(
+      ["Максим", "Олександр", "Дмитро"],
+      ["Ольга", "Катерина", "Наталя"]
+    );
+
+    // showDanceHead.randomChoiceBoysName();
+    // showDanceHead.randomChoiceGirlName();
+    // showDanceHead.bringingCoupleDancing();
+    showDanceHead.run();
+  </script>
+</body>
+
+</html>

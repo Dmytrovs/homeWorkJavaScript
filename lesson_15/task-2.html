@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>task 2</title>
+</head>
+
+<body>
+  <script>
+    // Задача 2. Створити об’єкт «Авто».
+    // Авто
+    // Поля(властивості)	Марка
+    // Розмір бака
+    // Кількість наявних літрів
+    // Кількість місць
+    // Кількість пасажирів
+    // Методи (дії)	Заправка на вказану кількість літрів
+    // Виведення кількості пасажирів
+    // Додавання пасажирів
+    // Висадка пасажирів
+
+    function Auto(
+      initialMark,
+      initialTankSize,
+      initialQuantityLitersAvailable,
+      initialQuantityPlaces,
+      initialQuantityPassengers
+    ) {
+      this.mark = initialMark;
+      this.tankSize = initialTankSize;
+      this.quantityLitersAvailable = initialQuantityLitersAvailable;
+      this.quantityPlaces = initialQuantityPlaces;
+      this.quantityPassengers = initialQuantityPassengers;
+    }
+
+    Auto.prototype.refuelingSpecifiedQuantityLiters = function () {
+      let quantityLiters = parseInt(
+        prompt(`Авто ${this.mark} Кількість літрів заправки?`)
+      );
+      if (quantityLiters <= this.tankSize - this.quantityLitersAvailable) {
+        this.quantityLitersAvailable += quantityLiters;
+        alert(
+          `Заправили бак на ${quantityLiters} в баці ${this.quantityLitersAvailable}`
+        );
+      } else alert("Перевищено обьєм баку авто");
+      return this.quantityLitersAvailable;
+    };
+
+    Auto.prototype.showQuantitypassengers = function () {
+      alert(`Кількість пасажирів ${this.quantityPassengers}`);
+    };
+
+    Auto.prototype.addingPassengers = function (addPasseng) {
+      if (addPasseng <= this.quantityPlaces - this.quantityPassengers) {
+        this.quantityPassengers += addPasseng;
+        alert("В авто є місця. Поїхали!");
+      } else
+        alert(
+          `Нажаль всі не помістимося! Максимальна к-сть ${this.quantityPlaces}`
+        );
+
+      return this.quantityPassengers;
+    };
+
+    Auto.prototype.passengerLanding = function (landingPerson) {
+      if (landingPerson > this.quantityPassengers) {
+        alert(
+          `В авто тільки ${this.quantityPassengers} не можна висадити ${landingPerson} пасажирів`
+        );
+      } else {
+        this.quantityPassengers -= landingPerson;
+        alert(
+          `Висадили ${landingPerson} залишилося в авто ${this.quantityPassengers}`
+        );
+      }
+
+      return this.quantityPassengers;
+    };
+
+    const Auto1 = new Auto("Skoda", 45, 10, 5, 2);
+    Auto1.refuelingSpecifiedQuantityLiters();
+    Auto1.showQuantitypassengers();
+    Auto1.addingPassengers(3);
+    Auto1.passengerLanding(1);
+
+    document.writeln(
+      `Залишилося в авто пасажирів: ${Auto1.quantityPassengers}<br> К-сть літрів в баці: ${Auto1.quantityLitersAvailable}`
+    );
+  </script>
+</body>
+
+</html>

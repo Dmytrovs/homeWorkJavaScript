@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Task 0</title>
+</head>
+
+<body>
+  <script>
+    // Задача 0. Дано два об’єкта. Обидва містять масив цілих чисел. При цьому у одному з них є функція знаходження суми, а у іншому – функція для знаходження добутку тих, які знаходяться між заданими мінімальним і максимальних значенням.
+    // Використати обидва методи стосовно обидвох об’єктів (використати call, apply)
+
+    const object1 = {
+      wholeNum: [123, 43, 566, 34, 89],
+      findingAmount: function () {
+        let sum = this.wholeNum.reduce((prevSum, el) => prevSum + el, 0);
+        return sum;
+      },
+    };
+
+    document.writeln(
+      `object1 функція знаходження суми: ${object1.findingAmount()} <br>`
+    );
+
+    const object2 = {
+      wholeNum: [82, 45, 89, 3, 7],
+      productNumbers: function () {
+        let min = Math.min(...this.wholeNum);
+        let max = Math.max(...this.wholeNum);
+        let filtNum = this.wholeNum.filter((el) => el !== min && el !== max);
+        if (filtNum.length === 0) return 0;
+        else {
+          return filtNum.reduce((prevSum, elem) => prevSum * elem, 1);
+        }
+      },
+    };
+
+    document.writeln(
+      `object2 функція для знаходження добутку тих, які знаходяться між заданими мінімальним і максимальних значенням: ${object2.productNumbers()} <br>`
+    );
+    let callUser = object1.findingAmount.call(object2);
+
+    let applyUser = object2.productNumbers.apply(object1);
+
+    document.writeln(`З використанням call для object2: ${callUser} <br>`);
+    document.writeln(`З використанням aply для object1: ${applyUser} <br>`);
+  </script>
+</body>
+
+</html>

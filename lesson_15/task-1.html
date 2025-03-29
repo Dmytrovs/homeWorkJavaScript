@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Task 1</title>
+</head>
+
+<body>
+  <script>
+    // Задача 1. Створити об’єкт «Тир». У масиві зберігаються 1, якщо у цьому квадраті є заєць і 0 в іншому випадку.
+    // Тир
+    // Поля(властивості)	Масив, у якому зберігається поле з зайцями
+    // Методи (дії)	Метод пострілу (задається позиція пострілу)
+    // Виведення ігрового поля
+
+    const shot = {
+      arrSquareFieldRabbits: [
+        [1, 0, 1, 0],
+        [1, 1, 1, 0],
+        [0, 0, 1, 0],
+        [0, 0, 0, 1],
+      ],
+      showPlayingField: function (playField) {
+        for (const row of playField) {
+          document.writeln(`${row} <br>`);
+        }
+      },
+      shooting: function (quantityShots = 3) {
+        let fieldRabbits = this.arrSquareFieldRabbits;
+        let quantityRabbits = JSON.parse(JSON.stringify(fieldRabbits));
+        let rabbitsLeft = quantityRabbits
+          .flat()
+          .filter((rabbit) => rabbit === 1).length;
+        while (quantityShots > 0 && rabbitsLeft > 0) {
+          let userRow = parseInt(prompt("Введіть номер рядка 0 - 3 "));
+          let userColumn = parseInt(prompt("Введіть номер стовбця 0 - 3"));
+          if (quantityRabbits[userRow][userColumn] === 1) {
+            alert("Попав");
+            quantityRabbits[userRow][userColumn] = 0;
+            rabbitsLeft--;
+          } else alert("Не попав");
+          quantityShots--;
+          if (quantityShots === 0) {
+            alert("Постріли закінчилися");
+          }
+
+          if (rabbitsLeft === 0) {
+            alert("Вітаю! Зайці закінчилися.");
+          }
+        }
+        if (quantityShots === 0 || rabbitsLeft === 0) {
+          // за допомогою forOf
+          // for (const row of quantityRabbits) {
+          //   document.write(`${row} <br>`);
+          // }
+          this.showPlayingField.call(this, quantityRabbits);
+        }
+      },
+    };
+
+    shot.shooting();
+    // shot.showPlayingField(shot.arrSquareFieldRabbits)
+  </script>
+</body>
+
+</html>

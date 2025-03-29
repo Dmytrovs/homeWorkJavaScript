@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Task 3</title>
+</head>
+
+<body>
+  <script>
+    // Задача 3. Розробити клас MultChecker для перевірки таблиці множення
+    // Поля	Число, яке перевіряємо (наприклад, перевірка частини таблиці множення на 7)
+    // Кількість правильних відповідей
+    // Кількість неправильних відповідей
+    // Методи	Генерування прикладу (метод випадковим чином визначає друге число, перше число фіксоване)
+    // Перевірка правильності вказаної відповіді
+    // render - виведення інформації про тестування на екран
+
+    class MultChecker {
+      constructor(
+        initialNumberCheck,
+        initialNumberTrueAnswers,
+        initialNumberFalseAnswers,
+        initialRandomNum
+      ) {
+        this.numCheck = initialNumberCheck;
+        this.numTrueAnswer = initialNumberTrueAnswers;
+        this.numFalseAnswer = initialNumberFalseAnswers;
+        this.randomNum = initialRandomNum;
+      }
+      generationExample() {
+        this.randomNum = 1 + Math.floor(Math.random() * 10);
+        return [this.numCheck, this.randomNum];
+      }
+      checkingAnswer() {
+        let result = this.numCheck * this.randomNum;
+        let userAnswer = parseInt(
+          prompt(`${this.numCheck} помножити на  ${this.randomNum} = ?`)
+        );
+        if (userAnswer === result) {
+          this.numTrueAnswer += 1;
+        } else {
+          this.numFalseAnswer += 1;
+        }
+        return [this.numTrueAnswer, this.numFalseAnswer];
+      }
+
+      render() {
+        document.writeln(
+          ` Кількість правильних: ${this.numTrueAnswer}<br> к-сть неправильних: ${this.numFalseAnswer}`
+        );
+      }
+    }
+
+    let checker = new MultChecker(4, 0, 0, 0);
+    checker.generationExample();
+    checker.checkingAnswer();
+    checker.render();
+  </script>
+</body>
+
+</html>
