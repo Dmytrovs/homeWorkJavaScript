@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Task 1</title>
+</head>
+
+<body>
+  <script>
+    // Задача 1. Створити клас TDate для роботи із датами у форматі “день.місяць.рік”. Дата представляється структурою із трьома полями. Реалізувати методи збільшення/зменшення дати на певну кількість днів, місяців чи років. Введення та виведення дати реалізувати за допомогою методу  toString.
+
+    class TDate {
+      #year;
+      get Year() {
+        return this.#year;
+      }
+      set Year(newYear) {
+        if (newYear < 0) {
+          throw new Error("Рік не може бути від'ємним!");
+        }
+        this.#year = newYear;
+        this.correctDay();
+
+      }
+      #month;
+      get Month() {
+        return this.#month;
+      }
+
+      set Month(newMonth) {
+        if (newMonth < 1 || newMonth > 12) {
+          throw new Error("Місяць має бути від 1 до 12");
+        }
+        this.#month = newMonth
+        this.correctDay()
+      }
+      #day;
+      get Day() {
+        return this.#day;
+      }
+      set Day(newDay) {
+        if (newDay < 1 || newDay > this.getDayInMonth()) {
+          throw new Error(
+            `Некоректний день! У місяці ${this.Month
+            } повино бути ${this.getDayInMonth()} `
+          );
+        }
+        this.#day = newDay;
+      }
+
+      constructor(year, month, day) {
+        this.Year = year;
+        this.Month = month;
+        this.Day = day;
+      }
+
+      getDayInMonth() {
+        const dayInMonth = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
+        if (this.Month === 2) {
+          if (
+            (this.Year % 4 === 0 && this.Year % 100 !== 0) ||
+            this.Year % 400 === 0
+          ) {
+            return 29;
+          }
+        }
+        return dayInMonth[this.Month - 1];
+      }
+
+      correctDay() {
+        if (this.Day > this.getDayInMonth()) {
+          this.Day = this.getDayInMonth()
+        }
+      }
+
+      increaceDay(quantityDay) {
+        for (let i = 0; i < quantityDay; i++) {
+          this.#day++;
+          if (this.#day > this.getDayInMonth()) {
+            this.#day = 1;
+            this.increaceMonth(1);
+          }
+        }
+      }
+      decreaceDay(quantityDay) {
+        for (let i = 0; i < quantityDay; i++) {
+          this.#day--;
+          if (this.#day < 1) {
+            this.decreaceMonth(1);
+            this.#day = this.getDayInMonth();
+          }
+        }
+      }
+      increaceMonth(quantityMonth) {
+        for (let i = 0; i < quantityMonth; i++) {
+          this.#month++;
+          if (this.#month > 12) {
+            this.#month = 1;
+            this.increaceYear(1);
+          }
+        }
+        this.correctDay();
+      }
+      decreaceMonth(quantityMonth) {
+        for (let i = 0; i < quantityMonth; i++) {
+          this.#month--;
+          if (this.#month < 1) {
+            this.#month = 12;
+            this.decreaceYear(1);
+          }
+        }
+        this.correctDay()
+      }
+      increaceYear(quantityYear) {
+        this.#year += quantityYear
+        this.correctDay()
+      }
+      decreaceYear(quantityYear) {
+        if (this.#year - quantityYear < 1) {
+          throw new Error("Рік менше 1");
+        }
+        this.#year -= quantityYear
+        this.correctDay()
+      }
+      toString() {
+        return `День:${this.Day}  Місяць:${this.Month} Рік:${this.Year}`;
+      }
+    }
+
+    try {
+      const newDate = new TDate(2025, 3, 14);
+      newDate.increaceDay(3);
+      // newDate.increaceMonth(3)
+      // newDate.decreaceYear(1);
+      // newDate.decreaceMonth(5)
+      document.writeln(newDate.toString());
+    } catch (error) {
+      document.writeln("Щось пішло не так <br>");
+      document.writeln(error.message);
+    }
+
+
+  </script>
+</body>
+
+</html>

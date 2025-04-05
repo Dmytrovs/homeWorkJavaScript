@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Task 3</title>
+</head>
+
+<body>
+  <script>
+    // Задача 3. Об’єкт “Фірма” (використати члени-класи)
+    // поля	▪	назва фірми;
+    // ▪	дата заснування (рік, місяць);
+    // ▪	послуги (назва послуги, вартість, термін виконання);
+    // ▪	адреси філіалів (країна, місто, вулиця, номер будинку);
+    // методи	▪	визначення кількості років існування фірми;
+    // ▪	виведення всіх філіалів фірми у вказаному місті;
+    // ▪	виведення на екран послуг, що можуть бути виконані за вказану суму грошей та вказаний термін часу;
+
+    class DateFoundation {
+      #year;
+      get Year() {
+        return this.#year;
+      }
+      set Year(newYear) {
+        if (newYear < 0) {
+          throw new Error("Рік не може бути від'ємним!");
+        }
+        return (this.#year = newYear);
+      }
+      #month;
+      get Month() {
+        return this.#month;
+      }
+      set Month(newMonth) {
+        if (newMonth < 0 || newMonth > 12) {
+          throw new Error("Номер місяця повинен бути в діапазоні від 1 до 12");
+        }
+        return (this.#month = newMonth);
+      }
+      constructor(initialYear, initialMonth) {
+        this.Year = initialYear;
+        this.Month = initialMonth;
+      }
+    }
+
+    class Services {
+      #nameService;
+      get NameService() {
+        return this.#nameService;
+      }
+      set NameService(newName) {
+        if (newName.length === 0) {
+          throw new Error("Назва не може бути порожньою!");
+        }
+        return (this.#nameService = newName);
+      }
+      #cost;
+      get Cost() {
+        return this.#cost;
+      }
+      set Cost(newCost) {
+        if (newCost < 0) {
+          throw new Error("Вартість не може бути від'ємною!");
+        }
+        return (this.#cost = newCost);
+      }
+      #deadline;
+      get Deadline() {
+        return this.#deadline;
+      }
+      set Deadline(newValue) {
+        if (newValue < 0) {
+          throw new Error("Термін виконання не може бути від'ємним!");
+        }
+        return (this.#deadline = newValue);
+      }
+      constructor(initialNameService, initialCost, initialDeadline) {
+        this.NameService = initialNameService;
+        this.Cost = initialCost;
+        this.Deadline = initialDeadline;
+      }
+    }
+
+    class BranchAddresses {
+      #country;
+      get Country() {
+        return this.#country;
+      }
+      set Country(newCountry) {
+        if (newCountry.length === 0) {
+          throw new Error("Назва країни не може бути порожньою!");
+        }
+        return (this.#country = newCountry);
+      }
+      #city;
+      get City() {
+        return this.#city;
+      }
+      set City(newCity) {
+        if (newCity.length === 0) {
+          throw new Error("Назва міста не може бути порожнім!");
+        }
+        return (this.#city = newCity);
+      }
+      #street;
+      get Street() {
+        return this.#street;
+      }
+      set Street(newStreet) {
+        if (newStreet.length === 0) {
+          throw new Error("Назва вулиці не може бути порожньою!");
+        }
+        return (this.#street = newStreet);
+      }
+      #houseNumber;
+      get HouseNumber() {
+        return this.#houseNumber;
+      }
+      set HouseNumber(newHouseNumber) {
+        if (newHouseNumber < 0) {
+          throw new Error("Номер дома не може бути порожнім!");
+        }
+        return (this.#houseNumber = newHouseNumber);
+      }
+      constructor(initialCountry, initialCity, initialStreet, initialHouseNumber) {
+        this.Country = initialCountry;
+        this.City = initialCity;
+        this.Street = initialStreet;
+        this.HouseNumber = initialHouseNumber;
+      }
+    }
+
+    class Firm {
+      #nameFirm;
+      get NameFirm() {
+        return this.#nameFirm;
+      }
+      set NameFirm(newNameFirm) {
+        if (newNameFirm.length === 0) {
+          throw new Error("Назва фірми не може бути порожньою!");
+        }
+        return (this.#nameFirm = newNameFirm);
+      }
+      constructor(
+        initialNameFirm,
+        initialDateFoundation,
+        initialServices,
+        initialBranchAddresses
+      ) {
+        this.NameFirm = initialNameFirm;
+        this.DateFoundation = initialDateFoundation;
+        this.Services = initialServices;
+        this.BranchAddresses = initialBranchAddresses;
+      }
+
+      definitionQuantityYearsExistenceFirms() {
+        return 2025 - this.DateFoundation.Year;
+      }
+
+      withdrawingAllBranchesFirmSpecifiedCity(findCity) {
+        let findCityText = "";
+        for (const branch of this.BranchAddresses) {
+          if (branch.City.toLowerCase() === findCity.toLowerCase()) {
+            findCityText += `країна: ${branch.Country}, місто: ${branch.City}, вулиця: ${branch.Street}, номер будинку: ${branch.HouseNumber} <br>`;
+          }
+        }
+        if (findCityText === "") {
+          throw new Error("Не знайдено такого філіалу у вказаному місті!");
+        }
+        return `Виведення всіх філіалів фірми у вказаному місті: ${findCity}: <br> ${findCityText}`;
+      }
+      servicesPerformedAmountMoneyTime(money, time) {
+        let performadAmountText = "";
+        for (const specified of this.Services) {
+          if (specified.Cost <= money && specified.Deadline <= time) {
+            performadAmountText += `${specified.NameService} - ${specified.Cost} грн, ${specified.Deadline} днів <br>`;
+          }
+        }
+        if (performadAmountText === "") {
+          throw new Error(
+            "Не знайдено послуг, що можуть бути виконані за вказану суму грошей та вказаний термін часу"
+          );
+        }
+        return performadAmountText;
+      }
+      toString() {
+        let servisesText = "";
+        for (const serv of this.Services) {
+          servisesText += `${serv.NameService}, ${serv.Cost} грн, ${serv.Deadline} днів <br>`;
+        }
+        let branchText = "";
+        for (const branch of this.BranchAddresses) {
+          branchText += `країна: ${branch.Country}, місто: ${branch.City}, вулиця: ${branch.Street}, номер будинку: ${branch.HouseNumber} <br>`;
+        }
+        return `Назва фірми:${this.NameFirm
+          } <br> Заснована: ${this.definitionQuantityYearsExistenceFirms()} років тому у ${this.DateFoundation.Year
+          } році <br> Послуги: <br> ${servisesText} Адреси філіалів: <br> ${branchText}`;
+      }
+    }
+
+    try {
+      const yearEstablishmentTehno = new DateFoundation(2020, 5);
+      const providingServicesTehno = [
+        new Services("Діагностика пристроїв", 800, 1),
+        new Services("Ремонт та заміна комплектуючих", 10000, 14),
+        new Services("Встановлення віндовс та додаткових програм", 7000, 1),
+        new Services("Відновлення даних", 2500, 4),
+        new Services("Чищення та профілактика", 2000, 3),
+        new Services("Ремонт корпусних елементів", 3000, 10),
+      ];
+      const adreseBranchTehno = [
+        new BranchAddresses("Україна", "Київ", "Хрещатик", 54),
+        new BranchAddresses("Україна", "Київ", "Бульвар Тараса Шевченка", 30),
+        new BranchAddresses("Україна", "Київ", "Сагайдачного", 17),
+        new BranchAddresses("Україна", "Запоріжжя", "проспект Соборний", 175),
+        new BranchAddresses("Україна", "Полтава", "Європейська", 83),
+        new BranchAddresses("Україна", "Запоріжжя", "Космічна", 121),
+      ];
+
+      const tehnoFirm = new Firm(
+        "FastFix",
+        yearEstablishmentTehno,
+        providingServicesTehno,
+        adreseBranchTehno
+      );
+      document.writeln(tehnoFirm.toString());
+      document.writeln(tehnoFirm.withdrawingAllBranchesFirmSpecifiedCity("Київ"));
+      document.writeln(tehnoFirm.servicesPerformedAmountMoneyTime(5000, 3));
+    } catch (error) {
+      document.writeln(`Упс щось пішло не так! <br>`);
+      document.writeln(error.message);
+    }
+
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Task 4</title>
+</head>
+
+<body>
+  <script>
+    // Задача 4. Створити клас TBankomat, який моделює роботу банкомата. Клас повинен містити поля для зберігання кількості купюр кожного із номіналів від 5 до 200 гривень. Реалізувати методи знаходження максимальної та мінімальної сум, які може видати банкомат, та метод зняття деякої суми.
+
+    class TBankomat {
+      #denom_5;
+      get Denom_5() {
+        return this.#denom_5;
+      }
+      set Denom_5(value) {
+        if (value > 0) {
+          this.#denom_5 = value
+        } else {
+          this.#denom_5 = 0
+        }
+      }
+      #denom_10;
+      get Denom_10() {
+        return this.#denom_10;
+      }
+      set Denom_10(value) {
+        if (value > 0) {
+          this.#denom_10 = value
+        } else {
+          this.#denom_10 = 0
+        }
+      }
+      #denom_20;
+      get Denom_20() {
+        return this.#denom_20;
+      }
+      set Denom_20(value) {
+        if (value > 0) {
+          this.#denom_20 = value
+        } else {
+          this.#denom_20 = 0
+        }
+      }
+      #denom_50;
+      get Denom_50() {
+        return this.#denom_50;
+      }
+      set Denom_50(value) {
+        if (value > 0) {
+          this.#denom_50 = value
+        } else {
+          this.#denom_50 = 0
+        }
+      }
+      #denom_100;
+      get Denom_100() {
+        return this.#denom_100;
+      }
+      set Denom_100(value) {
+        if (value > 0) {
+          this.#denom_100 = value
+        } else {
+          this.#denom_100 = 0
+        }
+      }
+      #denom_200;
+      get Denom_200() {
+        return this.#denom_200;
+      }
+      set Denom_200(value) {
+        if (value > 0) {
+          this.#denom_200 = value
+        } else {
+          this.#denom_200 = 0
+        }
+      }
+
+      constructor() {
+        this.#denom_5 = Math.floor(Math.random() * 800);
+        this.#denom_10 = Math.floor(Math.random() * 700);
+        this.#denom_20 = Math.floor(Math.random() * 600);
+        this.#denom_50 = Math.floor(Math.random() * 400);
+        this.#denom_100 = Math.floor(Math.random() * 200);
+        this.#denom_200 = Math.floor(Math.random() * 100);
+      }
+
+      maxSumIssuance() {
+        let maxSum =
+          this.Denom_5 * 5 +
+          this.Denom_10 * 10 +
+          this.Denom_20 * 20 +
+          this.Denom_50 * 50 +
+          this.Denom_100 * 100 +
+          this.Denom_200 * 200;
+        if (maxSum === 0) {
+          throw new Error("В банкоматі немає грошей!");
+        }
+        return maxSum;
+      }
+
+      findMinSumIssuance() {
+        if (
+          this.Denom_5 === 0 &&
+          this.Denom_10 === 0 &&
+          this.Denom_20 === 0 &&
+          this.Denom_50 === 0 &&
+          this.Denom_100 === 0 &&
+          this.Denom_200 === 0
+        ) {
+          throw new Error("В банкоматі немає жодної купюри!");
+        }
+        if (this.Denom_5 > 0) return 5;
+        if (this.Denom_10 > 0) return 10;
+        if (this.Denom_20 > 0) return 20;
+        if (this.Denom_50 > 0) return 50;
+        if (this.Denom_100 > 0) return 100;
+        if (this.Denom_200 > 0) return 200;
+      }
+
+      removalSomeAmount(amount) {
+        if (amount > this.maxSumIssuance()) {
+          throw new Error("В банкоматі немає таких коштів!");
+        }
+        let sumAmountRemainder = amount;
+        let publishedBills = { 200: 0, 100: 0, 50: 0, 20: 0, 10: 0, 5: 0 };
+        let denomition = [
+          { bills: 200, count: this.Denom_200 },
+          { bills: 100, count: this.Denom_100 },
+          { bills: 50, count: this.Denom_50 },
+          { bills: 20, count: this.Denom_20 },
+          { bills: 10, count: this.Denom_10 },
+          { bills: 5, count: this.Denom_5 },
+        ];
+
+        for (const denom of denomition) {
+          let needBill = Math.floor(sumAmountRemainder / denom.bills);
+          let minAvailableIssue = Math.min(needBill, denom.count);
+          sumAmountRemainder -= minAvailableIssue * denom.bills;
+          publishedBills[denom.bills] = minAvailableIssue;
+
+          if (denom.bills === 200) this.Denom_200 -= minAvailableIssue;
+          if (denom.bills === 100) this.Denom_100 -= minAvailableIssue;
+          if (denom.bills === 50) this.Denom_50 -= minAvailableIssue;
+          if (denom.bills === 20) this.Denom_20 -= minAvailableIssue;
+          if (denom.bills === 10) this.Denom_10 -= minAvailableIssue;
+          if (denom.bills === 5) this.Denom_5 -= minAvailableIssue;
+        }
+
+        if (sumAmountRemainder > 0) {
+          throw new Error("В банкоматі немає купюр для видачі такої суми!");
+        }
+
+        let result = `Видано: ${amount} <br> Номінали купюр: `;
+        for (const bill in publishedBills) {
+          if (publishedBills[bill] > 0) {
+            result += `${bill} грн - ${publishedBills[bill]},  `;
+          }
+        }
+        return result;
+      }
+      toString() {
+        return ` Доступна кількість всіх купюр у банку: <br>  
+      200 грн - ${this.Denom_200} <br>
+      100 грн - ${this.Denom_100} <br>
+      50 грн - ${this.Denom_50} <br>
+      20 грн - ${this.Denom_20} <br>
+      10 грн - ${this.Denom_10} <br>
+      5 грн - ${this.Denom_5} <br>
+    `;
+      }
+    }
+
+    try {
+      let bankomatDnipro = new TBankomat();
+      document.writeln(bankomatDnipro.toString());
+
+      document.writeln(`${bankomatDnipro.removalSomeAmount(1995)} <br>`);
+
+      document.writeln(
+        `Мінімальна сума видачі: ${bankomatDnipro.findMinSumIssuance()} <br>`
+      );
+
+      document.writeln(
+        `Максимальна сума видачі: ${bankomatDnipro.maxSumIssuance()} <br>`
+      );
+      bankomatDnipro.Denom_5 = 0
+      bankomatDnipro.Denom_10 = 0
+      bankomatDnipro.Denom_20 = 44
+      bankomatDnipro.Denom_50 = 78
+      bankomatDnipro.Denom_100 = 53
+      bankomatDnipro.Denom_200 = 92
+      document.writeln(bankomatDnipro.toString());
+      document.writeln(
+        `Максимальна сума видачі: ${bankomatDnipro.maxSumIssuance()} <br>`
+      );
+      document.writeln(
+        `Мінімальна сума видачі: ${bankomatDnipro.findMinSumIssuance()} <br>`
+      );
+
+    } catch (error) {
+      document.writeln(`Упс щось пішло не так! <br>`);
+      document.writeln(error.message);
+    }
+  </script>
+</body>
+
+</html>

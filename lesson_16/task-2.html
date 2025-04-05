@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Task 2</title>
+</head>
+
+<body>
+  <script>
+    // Задача 2. Створити клас TMoney для роботи з грошовими сумами. Сума повинна зберігатися у вигляді доларового еквіваленту. Реалізувати методи додавання/вилучення грошової маси, вказуючи необхідну суму у гривнях, та визначення курсу долара, при якому сума у гривнях збільшиться на 100. Курс долара зберігати в окремому полі.
+
+    class TMoney {
+      #money;
+      get Money() {
+        return this.#money;
+      }
+      set Money(newMoney) {
+        if (newMoney < 0) {
+          throw new Error("Кількість грошей не може бути від'ємною!");
+        }
+        this.#money = newMoney;
+      }
+      #courseDollars;
+      get CourseDollars() {
+        return this.#courseDollars;
+      }
+      set CourseDollars(newCourseDollars) {
+        if (newCourseDollars < 0) {
+          throw new Error("Курс долара не може бути від'ємним!");
+        }
+        if (typeof newCourseDollars !== "number") {
+          throw new Error("Курс долара має бути числом!");
+        }
+        this.#courseDollars = newCourseDollars;
+      }
+      constructor(money, courseDollars) {
+        this.Money = money;
+        this.CourseDollars = courseDollars;
+      }
+
+      dolarEquivalent() {
+        return this.Money / this.CourseDollars;
+      }
+
+      newCourseDollarsCalculate() {
+        return (this.Money + 100) / this.dolarEquivalent();
+      }
+
+      addMoney(newMoney) {
+        this.Money += newMoney;
+      }
+      withdrawalMoney(withdrawal) {
+        if (withdrawal > this.Money) {
+          throw new Error("Недостатньо коштів для вилучення!");
+        }
+        this.Money -= withdrawal;
+      }
+
+      toString() {
+        return `Гривні: ${this.Money}  Долари:${this.dolarEquivalent().toFixed(
+          2
+        )}  Курс:${this.CourseDollars.toFixed(2)}`;
+      }
+    }
+
+    try {
+      const newUserMoney = new TMoney(42000, 42);
+      newUserMoney.addMoney(1500);
+      newUserMoney.withdrawalMoney(55);
+      const newCurse = newUserMoney.newCourseDollarsCalculate();
+      document.writeln(`Новий курс: ${newCurse.toFixed(2)} <br>`);
+      newUserMoney.CourseDollars = newCurse;
+      document.writeln(newUserMoney.toString());
+    } catch (error) {
+      document.writeln(`Упс щось пішло не так <br>`);
+      document.writeln(error.message);
+    }
+  </script>
+</body>
+
+</html>
