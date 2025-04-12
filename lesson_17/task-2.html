@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Task 2</title>
+</head>
+
+<body>
+  <script>
+    // 2.	Створити службове авто (водій, марка, номер). Створити клас таким чином, щоб можна було створити тільки один екземпляр цього класу.
+
+    class Auto {
+      static serviceCar;
+      constructor(driver, mark, number) {
+        if (Auto.serviceCar) {
+          return Auto.serviceCar;
+        }
+        this.driver = driver;
+        this.markAuto = mark;
+        this.number = number;
+        Auto.serviceCar = this;
+      }
+    }
+
+    const mazda = new Auto("Dmytro", "Mazda", "AA5643SD");
+    const audi = new Auto("Alex", "Audi", "JK7657LO");
+
+    document.writeln(
+      `Водій: ${mazda.driver} <br> Марка: ${mazda.markAuto} <br> Номер: ${mazda.number} <br>`
+    );
+    document.writeln(`<br>`);
+    document.writeln(
+      `Водій: ${audi.driver} <br> Марка: ${audi.markAuto} <br> Номер: ${audi.number}`
+    );
+    document.writeln(`<br>`);
+    document.writeln(mazda === audi);
+  </script>
+</body>
+
+</html>

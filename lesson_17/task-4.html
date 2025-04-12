@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Task 4</title>
+</head>
+
+<body>
+  <script>
+    // 4.	Склад. База товарів, які зберігаються на складі: назва товару, одиниця виміру, кількість, фірма виробник (назва, реєстраційний номер). Організувати реєстрацію/відвантаження товарів, фільтрація за назвою товару, фільтрація за назвою фірми
+
+    class Product {
+      #title;
+      get Title() {
+        return this.#title;
+      }
+      set Title(newTitle) {
+        if (newTitle.length === 0) {
+          throw new Error("Назва не може бути пустою!");
+        }
+        this.#title = newTitle;
+      }
+      #unit;
+      get Unit() {
+        return this.#unit;
+      }
+      set Unit(newUnit) {
+        if (newUnit.length === 0) {
+          throw new Error("Значення не може бути пустим!");
+        }
+        this.#unit = newUnit;
+      }
+      #quantity;
+      get Quantity() {
+        return this.#quantity;
+      }
+      set Quantity(newQuantity) {
+        if (newQuantity < 0) {
+          throw new Error("К-сть не може бути від'ємною!");
+        }
+        this.#quantity = newQuantity;
+      }
+      #nameManufacturer;
+      get NameManufacturer() {
+        return this.#nameManufacturer;
+      }
+      set NameManufacturer(newName) {
+        if (newName.length === 0) {
+          throw new Error("Ім'я не може бути пустим!");
+        }
+        this.#nameManufacturer = newName;
+      }
+      #registrationNumber;
+      get RegistrationNumber() {
+        return this.#registrationNumber;
+      }
+      set RegistrationNumber(newNum) {
+        if (newNum < 0) {
+          throw new Error("Значення не може бути від'ємним!");
+        }
+        this.#registrationNumber = newNum;
+      }
+      constructor(
+        initialTitle,
+        initialUnit,
+        initialQuantity,
+        initialNameManufacturer,
+        initialRegistrationNumber
+      ) {
+        this.Title = initialTitle;
+        this.Unit = initialUnit;
+        this.Quantity = initialQuantity;
+        this.NameManufacturer = initialNameManufacturer;
+        this.RegistrationNumber = initialRegistrationNumber;
+      }
+      toString() {
+        return `Назва товару: ${this.Title}, одиниця виміру: ${this.Unit}, кількість: ${this.Quantity}, фірма виробник: ${this.NameManufacturer}, реєстраційний номер: ${this.RegistrationNumber}<br>`;
+      }
+    }
+
+    const prod1 = [
+      new Product("Картопля", "кг", 40, "Прогрес", 7690945),
+      new Product("Молоко", "літр", 60, "Простоквашено", 9812764),
+      new Product("Кефір", "літр", 30, "Простоквашено", 9812764),
+    ];
+
+    class Warehouse {
+      #products;
+      constructor(initialProducts = []) {
+        this.#products = initialProducts;
+      }
+      addProduct(product) {
+        this.#products.push(product);
+      }
+      shipmentProduct(title, amount) {
+        const product = this.#products.find((prod) => prod.Title === title);
+        if (product) {
+          if (product.Quantity >= amount) {
+            product.Quantity -= amount;
+            return `Відвантажено: ${amount} ${product.Unit} ${product.Title}. Залишок: ${product.Title} ${product.Quantity} ${product.Unit}`;
+          } else throw new Error("Недостатня к-сть товару!");
+        } else throw new Error("Такого товару немає!");
+      }
+      filteringProductName(findTitle) {
+        const result = this.#products.filter((prod) => prod.Title === findTitle);
+        if (result.length > 0) {
+          return result;
+        } else throw new Error("Такого товару немає!");
+      }
+      filteringCompanyName(findName) {
+        const result = this.#products.filter(
+          (company) => company.NameManufacturer === findName
+        );
+        if (result.length > 0) {
+          return result;
+        } else throw new Error("Такої фірми немає!");
+      }
+      toString() {
+        return this.#products.map((el) => el.toString()).join("<br>");
+      }
+    }
+
+    try {
+      const wereHouse = new Warehouse(prod1);
+      document.writeln(wereHouse);
+      wereHouse.addProduct(new Product("Банан", "кг", 10, "Юнікс", 6565347));
+      document.writeln(wereHouse);
+      document.writeln(`${wereHouse.shipmentProduct("Банан", 2)}<br> <br>`);
+      document.writeln(wereHouse);
+      wereHouse.filteringProductName("Молоко");
+      document.writeln(
+        `Фільтрація за назвою товару: ${wereHouse.filteringProductName(
+          "Молоко"
+        )}<br> <br>`
+      );
+      document.writeln(
+        `Фільтрація за назвою фірми: ${wereHouse.filteringCompanyName(
+          "Простоквашено"
+        )}`
+      );
+    } catch (error) {
+      document.writeln(`Щось пішло не так! <br> <br>`);
+      document.writeln(error.message);
+    }
+
+  </script>
+</body>
+
+</html>

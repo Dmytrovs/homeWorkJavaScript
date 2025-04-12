@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Task 3</title>
+</head>
+
+<body>
+  <script>
+    // 3.	Створити клас Нагадувач. Кожні вказані кількості секунд (використати setInterval) програма нагадує про якусь подію (це просто текст) і також виводиться порядковий номер скільки раз вже нагадування було. Зробити так, щоб неможна було зробити одночасно декілька об’єктів-нагадувачів. Методи зупинки таймера, метод зміни повідомлення без зупинки таймера.
+
+    class Reminder {
+      static eventRemind;
+      static counter = 0;
+      static intervalRemind;
+      constructor(text, milliseconds) {
+        if (Reminder.eventRemind) {
+          return Reminder.eventRemind;
+        }
+        this.text = text;
+        this.milliseconds = milliseconds;
+        Reminder.intervalRemind = setInterval(() => {
+          Reminder.counter++;
+          alert(`${this.text}. Було: ${Reminder.counter} нагадування!`);
+        }, this.milliseconds);
+        Reminder.eventRemind = this;
+      }
+
+      static stop() {
+        clearInterval(Reminder.intervalRemind);
+        Reminder.intervalRemind = null;
+        Reminder.eventRemind = null;
+        Reminder.counter = 0;
+      }
+      static changeMessage(newText) {
+        if (Reminder.eventRemind) {
+          Reminder.eventRemind.text = newText;
+        }
+      }
+    }
+
+    const playText = new Reminder("Зробити звіт", 5000);
+    // Перевірка чи можна створити одночасно декілька об’єктів-нагадувачів
+    const rest = new Reminder("Перерва!", 5000);
+
+    setTimeout(() => {
+      Reminder.changeMessage("Допрацювати звіт №3");
+    }, 20000);
+
+    setTimeout(() => {
+      Reminder.stop();
+    }, 35000);
+
+    setTimeout(() => {
+      const rest = new Reminder("Перерва!", 5000);
+    }, 40000);
+
+    setTimeout(() => {
+      Reminder.stop();
+    }, 60000);
+
+  </script>
+</body>
+
+</html>

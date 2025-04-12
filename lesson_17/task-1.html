@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Task 1</title>
+</head>
+
+<body>
+  <script>
+    // 1.	Створити клас, що дозволяє виконувати такі операції над масивами: знаходження кількості додатних, кількості від’ємних, кількість входжень деякого числа (статичні методи)
+
+    class OperationsOnArrays {
+      static findingNumberPositives(listArr) {
+        return listArr.reduce(
+          (prevCount, el) => (el > 0 ? prevCount + 1 : prevCount),
+          0
+        );
+      }
+      static numNegative(listArrays) {
+        return listArrays.filter((el) => el < 0).length;
+      }
+      static qualityEntriesNumber(listArr, findElement) {
+        return listArr.reduce(
+          (prevCount, el) => (el === findElement ? prevCount + 1 : prevCount),
+          0
+        );
+      }
+    }
+    let numList = [54, 3, 87, -4, 658, 3];
+    document.writeln(
+      `К-сть додатних: ${OperationsOnArrays.findingNumberPositives(numList)} <br>`
+    );
+    document.writeln(
+      `К-сть від’ємних: ${OperationsOnArrays.numNegative(numList)}<br>`
+    );
+    document.writeln(
+      `Кількість входжень деякого числа: ${OperationsOnArrays.qualityEntriesNumber(
+        numList,
+        3
+      )}`
+    );
+
+  </script>
+</body>
+
+</html>
