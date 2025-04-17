@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Task 1</title>
+</head>
+
+<body>
+  <!-- Задача 1. Розробити калькулятор -->
+
+  <script>
+    function addSum() {
+      const num1 = parseFloat(document.getElementById('first').value)
+      const num2 = parseFloat(document.getElementById('second').value)
+      const sum = num1 + num2
+      document.getElementById('result').value = sum
+    }
+    function subtraction() {
+      const num1 = parseFloat(document.getElementById('first').value)
+      const num2 = parseFloat(document.getElementById('second').value)
+      const sum = num1 - num2
+      document.getElementById('result').value = sum
+    }
+    function multiplication() {
+      const num1 = parseFloat(document.getElementById('first').value)
+      const num2 = parseFloat(document.getElementById('second').value)
+      const sum = num1 * num2
+      document.getElementById('result').value = sum
+    }
+    function division() {
+      const num1 = parseFloat(document.getElementById('first').value)
+      const num2 = parseFloat(document.getElementById('second').value)
+      const sum = num1 / num2
+      document.getElementById('result').value = sum
+    }
+    window.onload = function () {
+      const btnAdd = document.querySelector('.add')
+      const btnTakeAway = document.querySelector('.take-away')
+      const btnMultiply = document.querySelector('.multiply')
+      const btnShare = document.querySelector('.share')
+      btnAdd.onclick = addSum
+      btnTakeAway.onclick = subtraction
+      btnMultiply.onclick = multiplication
+      btnShare.onclick = division
+    }
+  </script>
+
+  <label>
+    First number
+    <input id="first" type="text" placeholder="Type first number here" value="0">
+  </label>
+  <br>
+  <label>
+    Second number
+    <input id="second" type="text" placeholder="Type second number here" value="0">
+  </label>
+
+  <div id="container">
+    <button type="button" class="add">Додати</button>
+    <button type="button" class="take-away">Відняти</button>
+    <button type="button" class="multiply">Помножити</button>
+    <button type="button" class="share">Поділити</button>
+  </div>
+  <label>
+    Результат
+    <input id="result" type="text" placeholder="Result" value="0" />
+  </label>
+
+
+</body>
+
+</html>

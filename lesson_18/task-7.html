@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Task 7</title>
+</head>
+
+<body>
+  <!-- Задача 7. Подорож складається з 3 етапів. На кожному етапі користувач може вибрати один з видів транспорту (авто,
+  автобус, літак - випадаючий список), харчування (сніданок, обід, вечеря – checkbоx) та одного з 3-х гідів(використати -
+  radio buttons). Ціни визначте самі. Підрахувати загальну вартість. -->
+  <h2>Вид транспорту</h2>
+  <div>
+    <select name="modeTransport">
+      <option value="400">авто</option>
+      <option value="250">автобус</option>
+      <option value="700">літак</option>
+    </select>
+  </div>
+  <h2>Харчуваняя</h2>
+  <div>
+    <label>
+      сніданок
+      <input type="checkbox" name="nutrition" value="190">
+    </label>
+    <label>
+      обід
+      <input type="checkbox" name="nutrition" value="230">
+    </label>
+    <label>
+      вечеря
+      <input type="checkbox" name="nutrition" value="280">
+    </label>
+  </div>
+  <h2>Гід:</h2>
+  <div>
+    <label>
+      Максим Кобяк
+      <input type="radio" name="guide" value="300">
+    </label>
+    <label>
+      Олена Сидоренко
+      <input type="radio" name="guide" value="250">
+    </label>
+    <label>
+      Ігор Лильо
+      <input type="radio" name="guide" value="300">
+    </label>
+  </div>
+  <br>
+  <div>
+    <button type="button">Розрахувати загальну вартість</button>
+  </div>
+  <br>
+  <div>Загалом : <span id="result"></span></div>
+
+  <script>
+    function getTotalPrice() {
+      const optionListTransport = document.getElementsByName('modeTransport')
+      const nutritionInputList = document.getElementsByName('nutrition')
+      const guideInputList = document.getElementsByName('guide')
+      let totalSum = 0
+      for (const optionEl of optionListTransport) {
+        totalSum += parseInt(optionEl.value)
+      }
+      for (const elemNutr of nutritionInputList) {
+        if (elemNutr.checked) totalSum += parseInt(elemNutr.value)
+      }
+      for (const elemGuide of guideInputList) {
+        if (elemGuide.checked) totalSum += parseInt(elemGuide.value)
+      }
+      document.getElementById('result').innerText = totalSum
+    }
+
+    document.querySelector('button').onclick = getTotalPrice
+
+  </script>
+
+</body>
+
+</html>
