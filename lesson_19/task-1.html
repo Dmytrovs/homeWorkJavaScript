@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Task 1</title>
+</head>
+
+<body>
+  <!-- Задача 1. Дано 10 рядків тексту «Hello!» у окремих div. При кліку на якийсь із них усі наступні повинні бути зафарбовані
+  у червоний колір. -->
+  <div>Hello!</div>
+  <div>Hello!</div>
+  <div>Hello!</div>
+  <div>Hello!</div>
+  <div>Hello!</div>
+  <div>Hello!</div>
+  <div>Hello!</div>
+  <div>Hello!</div>
+  <div>Hello!</div>
+  <div>Hello!</div>
+
+  <script>
+    function onClick(e) {
+      const clickerElement = e.target
+      if (clickerElement.tagName === 'DIV') {
+        let divCurrent = clickerElement.nextElementSibling
+        while (divCurrent) {
+          divCurrent.style.color = 'red'
+          divCurrent = divCurrent.nextElementSibling
+        }
+      }
+    }
+
+    const divEl = document.getElementsByTagName('div')
+    for (const element of divEl) {
+      element.onclick = onClick
+    }
+
+
+  </script>
+</body>
+
+</html>

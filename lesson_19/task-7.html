@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style.css">
+  <title>Task 7</title>
+</head>
+
+<body>
+
+  <!-- 7. Задача 1. Відобразити падаючий сніг. Сніжинка з’являється у верхній частині екрану (top =0) і з випадковою швидкістю
+  рухається вниз (у setInterval викликати метод, у якому додавати крок до top). Як тільки сніжинка досягає нижньої частини
+  екрану (top>maxTop) вона знову повинна з’явитись у верхній частині екрану (top=0). -->
+
+  <script>
+    const div = document.createElement('div')
+    document.body.append(div)
+
+
+    class createSnow {
+      constructor(imageSrc) {
+        this.img = document.createElement('img')
+        this.img.src = imageSrc
+        this.img.classList.add('snow-image')
+        this.img.style.position = 'absolute'
+        this.img.style.top = '0px'
+        this.img.style.left = `${Math.random() * window.innerWidth}px`
+        this.speed = Math.random() * 3 + 1
+        div.append(this.img)
+      }
+
+      positionSnow() {
+        let curentTop = parseFloat(this.img.style.top)
+        curentTop += this.speed
+        if (curentTop > window.innerHeight) {
+          curentTop = 0
+          this.img.style.left = `${Math.random() * window.innerWidth}px`
+        }
+        this.img.style.top = `${curentTop}px`
+      }
+    }
+
+
+
+
+    const snow = 'img/snowflake.png'
+
+    for (let i = 0; i < 5; i++) {
+      const snowShow = new createSnow(snow)
+      setInterval(() => {
+        snowShow.positionSnow()
+      }, 100)
+
+    }
+
+
+
+  </script>
+
+</body>
+
+</html>

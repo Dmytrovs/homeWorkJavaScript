@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Task 3</title>
+</head>
+
+<body>
+  <!-- Задача 3. Дано 5 випадковим чином згенерованих нумерованих списків з рандомними числами (кількість елементів у списку
+  випадкова від 1 до 10, елементи випадкові – від 1 до 100). При натисненні на кнопку нумеровані списки з парною кількістю
+  елементів зафарбувати у зелений колір, інші у червоний. -->
+
+  <script>
+    function createRandomElements(minValueEL = 1, maxValueEL = 10, minRandNum = 1, maxRandNum = 100) {
+      for (let i = 0; i < 5; i++) {
+        const generateElemRandomLists = minValueEL + Math.floor(Math.random() * maxValueEL)
+        const olElem = document.createElement('ol')
+        olElem.classList.add('random-list')
+        document.body.append(olElem)
+        for (let k = 0; k < generateElemRandomLists; k++) {
+          const generateRandNumber = minRandNum + Math.floor(Math.random() * maxRandNum)
+          const liElem = document.createElement('li')
+          olElem.append(liElem)
+          liElem.innerText = generateRandNumber
+        }
+      }
+      const button = document.createElement('button')
+      button.innerText = 'Зафарбувати'
+      document.body.append(button)
+    }
+    createRandomElements()
+
+    function paintElements() {
+      const olList = document.querySelectorAll('.random-list')
+      for (const item of olList) {
+        if (item.children.length % 2 === 0) {
+          item.style.backgroundColor = 'green'
+        } else {
+          item.style.backgroundColor = 'red'
+        }
+      }
+    }
+
+    const btn = document.querySelector('button')
+    btn.onclick = paintElements
+
+  </script>
+</body>
+
+</html>

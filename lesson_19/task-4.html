@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Task 4</title>
+</head>
+
+<body>
+  <!-- Задача 4. Дано 3 таблиці розмірності 3*3 з випадковими числами. Якщо відбувається клік на якійсь із клітинок, то до
+  відповідної таблиці додається червона рамка (спробуйте додати можливість відображення кількості кліків біля назви
+  таблиці з використанням відповідно доданого для цього атрибута). -->
+
+  <script>
+    function createtable(rowsNum, colsNum, min = 1, max = 99, quantityTable = 3) {
+      for (let f = 0; f < quantityTable; f++) {
+        const h2 = document.createElement('h2')
+        h2.innerText = `Таблиця № ${f + 1}`
+        document.body.append(h2)
+
+        const p = document.createElement('p')
+        p.classList.add('click_num')
+        p.innerText = 'К-сть кліків = 0'
+        document.body.append(p)
+
+        const tables = document.createElement('table')
+        tables.style.border = "2px solid black"
+        tables.style.margin = '10px'
+        tables.setAttribute('data-clicks', '0')
+        for (let k = 0; k < rowsNum; k++) {
+          const tr = document.createElement('tr')
+          for (let t = 0; t < colsNum; t++) {
+            const randNum = min + Math.floor(Math.random() * max)
+            const td = document.createElement('td')
+            td.style.border = '1px solid black'
+            td.innerText = randNum
+            tr.append(td)
+          }
+          tables.append(tr)
+        }
+        document.body.append(tables)
+      }
+    }
+    createtable(3, 3)
+
+
+    function onTdClick(event) {
+      const clickedEl = event.target
+      if (clickedEl.tagName === 'TD') {
+        const table = clickedEl.closest('table')
+        table.style.border = '3px solid red'
+      }
+    }
+    function clicker(event) {
+      const clickedEl = event.target
+      if (clickedEl.tagName === 'TD') {
+        const table = clickedEl.closest('table')
+        let clickCount = parseInt(table.getAttribute('data-clicks'))
+        clickCount++
+        table.setAttribute('data-clicks', clickCount)
+        const p = table.previousElementSibling
+        p.innerText = `К-сть  кліків = ${clickCount}`
+      }
+    }
+
+
+    const tableList = document.querySelectorAll('table')
+    tableList.forEach(table => {
+      table.addEventListener("click", onTdClick);
+      table.addEventListener("click", clicker);
+    })
+
+
+
+
+
+
+  </script>
+</body>
+
+</html>

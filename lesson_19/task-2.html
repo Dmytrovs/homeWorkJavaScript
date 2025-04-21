@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Task 2</title>
+</head>
+
+<body>
+  <!-- Задача 2. Дано 5 елементів input. При введенні значення у якийсь із них необхідно автоматично заповнювати інші (усі
+  попередні у спадному порядку(кожен попередній має значення на 1 менше за наступний), усі наступні на 1 більше (кожен
+  наступне на 1 більше за попереднього) -->
+
+  <label>
+    Value 1
+    <input id="first" type="number" placeholder="Type number here" value="">
+  </label>
+  <br>
+  <label>
+    Value 2
+    <input id="second" type="number" placeholder="Type number here" value="">
+  </label>
+  <br>
+  <label>
+    Value 3
+    <input id="three" type="number" placeholder="Type number here" value="">
+  </label>
+  <br>
+  <label>
+    Value 4
+    <input id="four" type="number" placeholder="Type number here" value="">
+  </label>
+  <br>
+  <label>
+    Value 5
+    <input id="five" type="number" placeholder="Type number here" value="">
+  </label>
+
+
+  <script>
+    function automateFill(input) {
+      const value = parseInt(input.value)
+      let currentLabel = input.parentElement;
+      let nextValue = value
+      let nextLabel = currentLabel
+      while (nextLabel.nextElementSibling) {
+        nextLabel = nextLabel.nextElementSibling
+        if (nextLabel.tagName !== 'LABEL') continue
+        const nextInput = nextLabel.querySelector('input')
+        nextValue += 1
+        nextInput.value = nextValue
+
+      }
+      let prevValue = value
+      let prevLabel = currentLabel
+      while (prevLabel.previousElementSibling) {
+        prevLabel = prevLabel.previousElementSibling
+        if(prevLabel.tagName !== 'LABEL') continue
+        const prevInput = prevLabel.querySelector('input')
+        prevValue -= 1
+        prevInput.value = prevValue
+      }
+    }
+
+
+
+    const elInputs = document.querySelectorAll('input')
+    elInputs.forEach(input => {
+      input.addEventListener('input', function () {
+        automateFill(input);
+      })
+    })
+
+
+
+
+  </script>
+
+
+
+
+
+
+</body>
+
+</html>

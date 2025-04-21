@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style.css">
+  <title>Task 5</title>
+</head>
+
+<body>
+  <!-- Задача 5. Відображаємо картки товарів, які користувач може вибирати. Вибраний товар має зелену рамку (при кліку робити
+  toogle з класом вибраного елемента) -->
+
+
+  <div class="wrapper">
+    <div class="card">
+      <a href="#">
+        <div class="badge">ТОП ПРОДАЖ</div>
+        <img src="img/image-1.webp" alt="Ноутбук Acer Aspire 7">
+        <div class="title">Ноутбук Apple MacBook Air 13" M1 8/256GB 2020 (MGN63) Space Gray</div>
+        <div class="price">34 999₴</div>
+      </a>
+    </div>
+    <div class="card">
+      <a href="#">
+        <div class="badge">ТОП ПРОДАЖ</div>
+        <img src="img/image-2.webp" alt="Ноутбук Acer Aspire 7">
+        <div class="title">Ноутбук Lenovo IdeaPad Slim 5 16IRL8 (82XF004MRA) Cloud Grey / 16" IPS WUXGA / Intel Core
+          i7-13620H / RAM 16 ГБ / SSD
+          512 ГБ / Подсветка клавиатуры / Зарядка через Type-C</div>
+        <div class="price">27 999₴</div>
+      </a>
+    </div>
+    <div class="card">
+      <a href="#">
+        <div class="badge">ТОП ПРОДАЖ</div>
+        <img src="img/image-3.webp" alt="Ноутбук Acer Aspire 7">
+        <div class="title">Ноутбук ASUS TUF Gaming A15 FA506NCR-HN006 (90NR0JV7-M002L0) Graphite Black / 15.6" IPS 144
+          Гц / AMD Ryzen 7 7435HS /
+          RAM 16 ГБ / SSD 512 ГБ / RTX 3050, 4 ГБ</div>
+        <div class="price">36 999₴</div>
+      </a>
+    </div>
+    <div class="card">
+      <a href="#">
+        <div class="badge">ТОП ПРОДАЖ</div>
+        <img src="img/image-4.webp" alt="Ноутбук Acer Aspire 7">
+        <div class="title">Ноутбук Acer Aspire 3 A315-59-51ST (NX.K6SEU.00M) Pure Silver / 15.6" IPS Full HD / Intel
+          Core i5-1235U / RAM 16 ГБ /
+          SSD 512 ГБ</div>
+        <div class="price">19 999₴</div>
+      </a>
+    </div>
+
+    <script>
+      const cardList = document.querySelectorAll('.card')
+      cardList.forEach(card => {
+        card.addEventListener('click', () => {
+          card.classList.toggle('active')
+        })
+      })
+    </script>
+
+
+  </div>
+</body>
+
+</html>
