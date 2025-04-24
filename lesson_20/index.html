@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style.css">
+  <title>ДЗ №20. Практика. Події - продовження</title>
+</head>
+<body>
+<h1>
+  Урок №20. Практика. Події - продовження
+</h1>
+
+  <h2>
+      Задача. Розробити форму для введення логіна і пароля.
+      Кнопка буде активною тільки тоді, коли буде задано логін і пароль.
+  </h2>
+
+<div class="my-form"></div>
+
+<script>
+class LoginPasswordForm {
+  constructor(parentContainerSelector) {
+    this.parentContainerSelector = document.querySelector(parentContainerSelector)
+  }
+  createForm() {
+    this.form = document.createElement('form')
+    this.form.className = 'form'
+    this.form.setAttribute('autocomplete', 'on')
+    return this.form
+  }
+
+  createLogin() {
+    const label = document.createElement('label')
+    label.innerText = 'Login'
+    label.className = 'label-style'
+    this.logInput = document.createElement('input')
+    this.logInput.type = 'text'
+    this.logInput.name = 'login'
+    this.logInput.placeholder = 'Enter your login'
+    this.logInput.className = 'inpt-style'
+    label.append(this.logInput)
+    return label
+  }
+
+  createPassword() {
+    const label = document.createElement('label')
+    label.innerText = 'Password'
+    label.className = 'label-style'
+    this.passwordInput = document.createElement('input')
+    this.passwordInput.type = 'password'
+    this.passwordInput.name = 'password'
+    this.passwordInput.placeholder = 'Enter your password'
+    this.passwordInput.className = 'inpt-style'
+    label.append(this.passwordInput)
+    return label
+  }
+
+  createButton() {
+    this.btn = document.createElement('button')
+    this.btn.type = 'button'
+    this.btn.innerText = 'SIGN IN'
+    this.btn.disabled = true
+    return this.btn
+  }
+
+  checkFields() {
+    const isLogin = this.logInput.value === ''
+    const isPassword = this.passwordInput.value === ''
+    this.btn.disabled = isLogin || isPassword
+  }
+
+render() {
+  const parentDiv = this.parentContainerSelector
+  const formEl = this.createForm()
+  formEl.append(this.createLogin())
+  formEl.append(this.createPassword())
+  formEl.append(this.createButton())
+  this.logInput.addEventListener('input', () => this.checkFields())
+  this.passwordInput.addEventListener('input', () => this.checkFields())
+
+  parentDiv.append(formEl)
+}
+
+}
+
+
+class ManagerForm {
+  constructor(containerSelector) {
+    this.containerSelector = containerSelector
+    this.createForm = new LoginPasswordForm(containerSelector)
+    this.createForm.render()
+  }
+}
+
+
+const formInit = new ManagerForm('.my-form')
+
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>

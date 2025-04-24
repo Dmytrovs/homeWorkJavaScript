@@ -1,0 +1,19 @@
+.form {
+  background-color: seashell;
+  border: 5px solid black;
+  width: 280px;
+  height: 130px;
+  padding: 20px;
+}
+
+.label-style {
+  display: flex;
+  justify-content: space-between;
+}
+.label-style:not(:last-child) {
+  margin-bottom: 20px;
+}
+
+.inpt-style {
+  width: 200px;
+}
