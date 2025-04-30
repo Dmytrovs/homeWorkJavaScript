@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Task 0</title>
+</head>
+
+<body>
+  <!-- Задача 0. Розробити клас Person (поля:ім'я, вік, адреса; методи: toString, визначення року народження). На основі класу
+  Person розробити клас Worker (додати поля: посада, розмір заробітної плати, кількість відсотів оподаткування;
+  методи:визначення кількості виплачених коштів за рік, та визначення розміру податків) -->
+  <ul>
+    <li id="one">Загальна інфо: </li>
+    <li id="two">Рік народження: </li>
+    <li id="three">Кількость виплачених коштів за рік: </li>
+    <li id="four">Розмір податків за рік: </li>
+  </ul>
+
+  <script>
+    class Person {
+      constructor(name, age, adresses) {
+        this.name = name
+        this.age = age
+        this.adresses = adresses
+        this.currentYear = 2025
+      }
+      definitionYearBirth() {
+        return this.currentYear - this.age
+      }
+      toString() {
+        return `Iм'я: ${this.name},  вік: ${this.age},  адреса: ${this.adresses}, рік народження: ${this.definitionYearBirth()} `
+      }
+    }
+
+    class Worker extends Person {
+      constructor(name, age, adresses, position, amountWages, quantityPercentageTaxation) {
+        super(name, age, adresses)
+        this.position = position
+        this.amountWages = amountWages
+        this.quantityPercentageTaxation = quantityPercentageTaxation
+      }
+      determiningNumberFundsPaidPerYear() {
+        this.annualSalaryEmployee = this.amountWages * 12
+        this.amountTaxes = (this.annualSalaryEmployee * this.quantityPercentageTaxation) / 100
+        this.netProfit = this.annualSalaryEmployee - this.amountTaxes
+        return this.netProfit
+      }
+      determiningAmountTaxes() {
+        return (this.annualSalaryEmployee * this.quantityPercentageTaxation) / 100
+      }
+      toString() {
+        return `${super.toString()}, посада:${this.position}, зарплата: ${this.amountWages}, податок: ${this.quantityPercentageTaxation}%`
+      }
+    }
+
+    const worker = new Worker('Dmytro', 30, 'Dnipro', 'Будівельник', 28000, 22)
+
+
+    document.getElementById('one').textContent += worker.toString()
+    document.getElementById('two').textContent += worker.definitionYearBirth()
+    document.getElementById('three').textContent += worker.determiningNumberFundsPaidPerYear()
+    document.getElementById('four').textContent += worker.determiningAmountTaxes()
+
+
+
+
+
+
+
+
+
+
+  </script>
+
+
+</body>
+
+</html>

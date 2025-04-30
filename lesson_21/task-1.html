@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Task 1</title>
+</head>
+
+<body>
+
+  <h2>Звичайний клієнт</h2>
+  <ul>
+    <li id="client-string"></li>
+    <li id="add">Додали грошей: </li>
+    <li id="withdrawing"> Забрали грошей: </li>
+  </ul>
+  <h2>GoldenClient</h2>
+  <ul>
+    <li id="gold"></li>
+    <li id="add-golf">Додали грошей: </li>
+    <li id="withdrawing-gold">Забрали грошей: </li>
+    <li id="determination">Визначення пені за використання кредитних коштів: </li>
+  </ul>
+
+  <!-- Задача 1. Створити клас Client
+  На основі цього класу створити клас GoldenClient -->
+
+
+  <script>
+    class Client {
+      #id
+      #fullName
+      #amountMoneyAccount
+      get Id() {
+        return this.#id
+      }
+      set Id(newId) {
+        if (typeof newId !== 'number' || newId <= 0) {
+          throw new Error("ID не може бути порожнім або від'ємним");
+        }
+        return this.#id = newId
+      }
+      get FullName() {
+        return this.#fullName
+      }
+      set FullName(newFullNAme) {
+        if (newFullNAme.length === 0) {
+          throw new Error("Значення не може бути порожнім");
+        }
+        return this.#fullName = newFullNAme
+      }
+      get AmountMoneyAccount() {
+        return this.#amountMoneyAccount
+      }
+      set AmountMoneyAccount(newMoney) {
+        if (newMoney < 0) {
+          throw new Error("Кількість грошей не може бути від'ємною!");
+        }
+        this.#amountMoneyAccount = newMoney;
+      }
+      constructor(id, fullName, amountMoneyAccount) {
+        this.Id = id
+        this.FullName = fullName
+        this.AmountMoneyAccount = amountMoneyAccount
+      }
+      addMoney(money) {
+        return this.AmountMoneyAccount += money
+      }
+      withdrawingMoney(withdrawing) {
+        if (withdrawing > this.AmountMoneyAccount) {
+          throw new Error("Недостатньо коштів для вилучення!")
+        }
+       return this.AmountMoneyAccount -= withdrawing
+      }
+      toString() {
+        return `ID: ${this.Id}, ПІБ: ${this.FullName}, Кількість грошей на рахунку: ${this.AmountMoneyAccount} грн`
+      }
+    }
+
+    const client = new Client(23, 'Тарас Григорович Шевченко', 15000)
+    document.getElementById('client-string').textContent = client.toString()
+    document.getElementById('add').textContent += client.addMoney(13)
+    document.getElementById('withdrawing').textContent +=  client.withdrawingMoney(3)
+
+    class GoldenClient extends Client {
+      #creditLimit = 10000
+      #percentageUseCreditFunds = 2
+      get CreditLimit() {
+        return this.#creditLimit
+      }
+      set CreditLimit(newCreditLimit) {
+        if (typeof newCreditLimit !== 'number' || newCreditLimit <= 0) {
+          throw new Error("Значення кредиту не може бути порожнім або від'ємним!");
+        }
+        return this.#creditLimit = newCreditLimit
+      }
+      get PercentageUseCreditFunds() {
+        return this.#percentageUseCreditFunds
+      }
+      set PercentageUseCreditFunds(newPercentageUseCreditFunds) {
+        if (typeof newPercentageUseCreditFunds !== 'number' || newPercentageUseCreditFunds <= 0) {
+          throw new Error("Значення відсотку не може бути порожнім або від'ємним!");
+        }
+        return this.#percentageUseCreditFunds = newPercentageUseCreditFunds
+      }
+      constructor(id, fullName, amountMoneyAccount, creditLimit, percentageUseCreditFunds) {
+        super(id, fullName, amountMoneyAccount)
+        this.CreditLimit = creditLimit
+        this.PercentageUseCreditFunds = percentageUseCreditFunds
+      }
+      determinationPenaltiesUseCreditFunds(quantityDay, quantityDayMonth) {
+        if (quantityDay > quantityDayMonth || quantityDay < 0 || quantityDayMonth <= 0) {
+          throw new Error("Некоретна кількість днів або днів у місяці");
+        }
+        return (this.CreditLimit * (this.PercentageUseCreditFunds / 100)) * (quantityDay / quantityDayMonth)
+      }
+      toString() {
+        return `${super.toString()}, Ліміт кредитних коштів: ${this.CreditLimit} грн, Відсоток за використання кредитних коштів: ${this.PercentageUseCreditFunds}`
+      }
+    }
+
+try {
+  const gold = new GoldenClient(7878, 'Вільям Генрі Гейтс', 3000, 1000, 1)
+
+  document.getElementById('gold').textContent = gold.toString()
+  document.getElementById('add-golf').textContent += gold.addMoney(50)
+  document.getElementById('withdrawing-gold').textContent += gold.withdrawingMoney(666)
+  document.getElementById('determination').textContent += gold.determinationPenaltiesUseCreditFunds(1, 30).toFixed(2)
+} catch (error) {
+  document.writeln(error.message)
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+</body>
+
+</html>

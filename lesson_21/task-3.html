@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style.css">
+  <title>Task 3</title>
+</head>
+
+<body>
+  <!-- Задача 3. Розробити Класи
+House 
+--- властивості ---
+● Координата Х
+● Координата У
+● шлях до зображення
+● інтервал оновлення
+--- методи ---
+● генерування елемента розмітки
+● оновлення через вказаний інтервал (збільшення або зменшення масштабу (об’єкт не рухається)
+Dog
+--- властивості ---
+● Координата Х
+● Координата У
+● шлях до зображення
+● інтервал оновлення
+--- методи ---
+● генерування елемента розмітки
+● оновлення через вказаний інтервал (випадкове зміщення по горизонталі (зміна координати Х))
+Bird
+--- властивості ---
+● Координата Х
+● Координата У
+● шлях до зображення
+● інтервал оновлення
+--- методи ---
+● генерування елемента розмітки
+● оновлення через вказаний інтервал (випадкове переміщення у довільному напрямку) -->
+
+  <script>
+    class House {
+      constructor(coordinateX, coordinateY, url, updateInterval) {
+        this.coordinateX = coordinateX
+        this.coordinateY = coordinateY
+        this.url = url
+        this.updateInterval = updateInterval
+        this.img = null
+      }
+      generationMarkingElement() {
+        const div = document.createElement('div')
+        div.className = 'house'
+        div.style.position = 'absolute'
+        div.style.top = `${this.coordinateY}px`
+        div.style.left = `${this.coordinateX}px`
+        const img = document.createElement('img')
+        img.className = 'img'
+        img.src = this.url
+        this.img = img
+        div.append(img)
+        document.body.append(div)
+      }
+      updateSpecifiedInterval() {
+        setInterval(
+          () => {
+            const random = 0.5 + Math.random() * 1.5
+            this.img.style.transform = `scale(${random})`
+          }, this.updateInterval
+        )
+      }
+    }
+
+    class Dog extends House {
+      updateSpecifiedInterval() {
+        setInterval(
+          () => {
+            const randDog = Math.random() * (document.documentElement.clientWidth - 400)
+            this.coordinateX = randDog
+            this.img.style.position = 'absolute'
+            this.img.style.left = `${this.coordinateX}px`
+          }, this.updateInterval
+        )
+      }
+    }
+
+    class Bird extends House {
+      updateSpecifiedInterval() {
+        setInterval(() => {
+          const randLeft = Math.random() * (document.documentElement.clientWidth - 300)
+          const randTop = Math.random() * (document.documentElement.clientHeight - 300)
+          this.coordinateX = randLeft
+          this.coordinateY = randTop
+          this.img.style.position = 'absolute'
+          this.img.style.left = `${this.coordinateX}px`
+          this.img.style.top = `${this.coordinateY}px`
+        }, this.updateInterval)
+      }
+    }
+
+    const house = new House(100, 100, './img/house.jpg', 6000)
+    house.generationMarkingElement()
+    house.updateSpecifiedInterval()
+
+    const ogiRelax = new House(100, 330, './img/ogi-relax.jpg', 6000)
+    ogiRelax.generationMarkingElement()
+    ogiRelax.updateSpecifiedInterval()
+
+    const dog = new Dog(200, 250, './img/dog.jpg', 4000)
+    dog.generationMarkingElement()
+    dog.updateSpecifiedInterval()
+    const bird = new Bird(100, 100, './img/birds.jpg', 2000)
+    bird.generationMarkingElement()
+    bird.updateSpecifiedInterval()
+
+    const jack = new Dog(400, 250, './img/jack.jpg', 4000)
+    jack.generationMarkingElement()
+    jack.updateSpecifiedInterval()
+
+    const ogiRan = new Bird(100, 100, './img/ogi-ran.jpg', 5000)
+    ogiRan.generationMarkingElement()
+    ogiRan.updateSpecifiedInterval()
+
+
+    const tarakan = new Bird(100, 100, './img/tarakan.jpg', 900)
+    tarakan.generationMarkingElement()
+    tarakan.updateSpecifiedInterval()
+
+
+  </script>
+
+
+
+</body>
+
+</html>

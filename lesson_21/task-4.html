@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Task 4</title>
+</head>
+
+<body>
+  <!-- Задача 4. Користувач задає місяць навчання учня (перевіряти чи є числом, чи від 1 до 12, чи не канікули) та оцінку
+  (перевіряти чи є числом, чи від 1 до 100). Вивести чи зможе він виправити оцінку (якщо оцінка погана і це не останній
+  місяць у семестрі) . Обробку усіх помилок зробити з використанням відповідних класів. -->
+  <form>
+    <label>
+      Місяць: <input type="number" name="month" placeholder="Значення від 1 до 12" value="">
+    </label> <br>
+    <label>
+      Оцінка: <input type="number" placeholder="Значення від 1 до 100" name="rating" value="">
+    </label> <br>
+    <input type="submit" name="btn" value="Перевірити">
+  </form>
+  <script>
+    class IsNotNumberError extends Error {
+      constructor() {
+        super()
+        this.message = 'Має бути числом'
+        this.name = 'IsNotNumberError'
+      }
+    }
+    class ValidationMonth extends Error {
+      constructor() {
+        super()
+        this.message = 'Невірний місяць діапазон від 1 до 12'
+        this.name = 'ValidationMonth'
+      }
+    }
+    class IsValidationVacationMonth extends Error {
+      constructor() {
+        super()
+        this.message = 'Зараз канікули семестр закінчився'
+        this.name = 'IsValidationVacationMonth'
+      }
+    }
+    class IsValidationRange extends Error {
+      constructor() {
+        super()
+        this.message = 'Невірна оцінка діапазон від 1 до 100'
+        this.name = 'IsValidationRange'
+      }
+    }
+
+    function validate() {
+      try {
+        const monthInp = parseInt(document.querySelector('input[name="month"]').value)
+        const ratingInp = parseInt(document.querySelector('input[name="rating"]').value)
+        const divEl = document.createElement('div')
+        divEl.style.color = 'green'
+        document.body.append(divEl)
+        const badRange = 60
+        const semesterMonth = [5, 12]
+
+        if (isNaN(monthInp) || isNaN(ratingInp)) throw new IsNotNumberError()
+        if (monthInp < 1 || monthInp > 12) throw new ValidationMonth()
+        const vacation = [6, 7, 8]
+        if (vacation.includes(monthInp)) throw new IsValidationVacationMonth()
+        if (ratingInp < 1 || ratingInp > 100) throw new IsValidationRange()
+        if (ratingInp < badRange && semesterMonth.includes(monthInp)) {
+          divEl.style.color = 'red'
+          divEl.innerText = 'Оцінка погага виправити неможливо останій місяць  у семестрі'
+        } else if (ratingInp < badRange && !semesterMonth.includes(monthInp)) {
+          divEl.innerText = 'Вітаю ще є час виправити оцінку. Готуйтеся!'
+        } else {
+          divEl.innerText = 'Молодець гарний результат!'
+        }
+      } catch (error) {
+        const divError = document.createElement('div')
+        divError.style.color = 'red'
+        document.body.append(divError)
+        if (error instanceof IsNotNumberError) {
+          divError.innerText = error.message
+        } else if (error instanceof ValidationMonth) {
+          divError.innerText = error.message
+        } else if (error instanceof IsValidationVacationMonth) {
+          divError.innerText = error.message
+        } else if (error instanceof IsValidationRange) {
+          divError.innerText = error.message
+        }
+        return false
+      }
+      return true
+    }
+
+
+    const btnInp = document.querySelector('input[name="btn"]')
+    btnInp.addEventListener('click', (event) => {
+      event.preventDefault()
+      validate()
+    })
+
+  </script>
+
+
+</body>
+
+</html>

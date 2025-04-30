@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Task 2</title>
+</head>
+
+<body>
+
+  <!-- Задача 2. Створити клас Bank, у якому зберігається масив клієнтів. Виконати такі операції
+  ● Вивести всіх простих клієнтів;
+  ● Вивести всіх клієнтів GoldenClient;
+  ● Знайти сумарну кількість грошей на рахунку; -->
+
+
+  <ul>
+    <li id="gold"></li>
+    <li id="simple"></li>
+    <li id="bank"></li>
+    <li id="allGold">Gold клієнти: - </li>
+    <li id="allSimple">Simple клієнти: - </li>
+    <li id="totalMoney">Загалом грошей: </li>
+  </ul>
+  <script>
+
+
+    class Client {
+      constructor(name, accountBalance) {
+        this.name = name
+        this.accountBalance = accountBalance
+      }
+      toString() {
+        return `Клієнт: ${this.name}, Баланс: ${this.accountBalance} грн`
+      }
+    }
+
+    class SimpleClient extends Client {
+      constructor(name, accountBalance) {
+        super(name, accountBalance)
+        this.status = 'SimpleClient'
+      }
+      toString() {
+        return `${super.toString()}, Статус: ${this.status} `
+      }
+    }
+
+
+    class GoldenClient extends Client {
+      constructor(name, accountBalance) {
+        super(name, accountBalance)
+        this.status = 'GoldenClient'
+      }
+      toString() {
+        return `${super.toString()}, Статус: ${this.status} `
+      }
+    }
+
+    class Bank {
+      constructor(clients) {
+        this.clients = clients
+      }
+      simpleStatus() {
+        return this.clients.filter(client => client.status === 'SimpleClient')
+      }
+      goldenStatus() {
+        return this.clients.filter(client => client.status === 'GoldenClient')
+      }
+      totalMoneyBalanceAll() {
+        return this.clients.reduce((total, client) => total + client.accountBalance, 0)
+      }
+      toString() {
+        return this.clients.map(element => {
+          return `Клієнт: ${element.name}, Баланс: ${element.accountBalance} грн, Статус: ${element.status} `
+        })
+      }
+    }
+
+
+    const pr1 = new GoldenClient('Дмитро Шевченко', 172000)
+    const pr2 = new GoldenClient('Алекс Дібров', 520600)
+    const pr3 = new SimpleClient('Наталя Полтавка', 6300)
+    const pr4 = new SimpleClient('Джон Маклейн', 73900)
+    const users = [pr1, pr2, pr3, pr4]
+
+    const bank = new Bank(users)
+    document.getElementById('gold').textContent = pr1.toString()
+    document.getElementById('simple').textContent = pr3.toString()
+    document.getElementById('bank').textContent = bank.toString()
+    document.getElementById('allGold').textContent += bank.goldenStatus()
+    document.getElementById('allSimple').textContent += bank.simpleStatus()
+    document.getElementById('totalMoney').textContent += bank.totalMoneyBalanceAll() + 'грн'
+
+
+
+
+  </script>
+
+</body>
+
+</html>
