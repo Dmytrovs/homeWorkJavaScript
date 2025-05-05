@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Task 4</title>
+</head>
+
+<body>
+  <!-- Задача 4. Створити функцію, яка дозволяє визначити, чи знаходиться вказана дата і час у межах поточного тижня (від
+  понеділка 0 год, 0хв, до неділі 23год.59хв) -->
+  <h2>Визначити, чи знаходиться вказана дата і час у межах поточного тижня (від
+    понеділка 0 год, 0хв, до неділі 23год.59хв)</h2>
+  <div class="block">
+    <label>
+      Рік: <input type="number" id="year" placeholder="Введіть рік">
+    </label> <br>
+    <label>
+      Місяць: <input type="number" id="month" placeholder="Введіть місяць">
+    </label><br>
+
+    <label>
+      Число: <input type="number" id="num" placeholder="Введіть число">
+    </label><br>
+    <label>
+      Години: <input type="number" id="hours" placeholder="Введіть години">
+    </label><br>
+    <label>
+      Хвилини: <input type="number" id="minutes" placeholder="Введіть хвилини">
+    </label><br>
+    <button class="btn">Перевірити</button>
+  </div>
+
+  <script>
+
+
+    document.querySelector('.btn').addEventListener('click', function getCurrentWeek() {
+      const year = parseInt(document.getElementById('year').value)
+      const month = parseInt(document.getElementById('month').value)
+      const num = parseInt(document.getElementById('num').value)
+      const hours = parseInt(document.getElementById('hours').value)
+      const minutes = parseInt(document.getElementById('minutes').value)
+
+      const userEnterValue = new Date(year, month - 1, num, hours, minutes, 0)
+      console.log(userEnterValue);
+
+      const currentDate = new Date()
+      const currentDay = currentDate.getDay()
+      const dayCurrent = currentDay === 0 ? - 6 : 1 - currentDay
+
+
+      const monday = new Date(currentDate)
+      monday.setDate(currentDate.getDate() + dayCurrent)
+      monday.setHours(0, 0, 0, 0)
+
+
+      const sunday = new Date(monday)
+      sunday.setDate(monday.getDate() + 6)
+      sunday.setHours(23, 59, 59, 999)
+
+      const divRes = document.createElement('div')
+      document.body.append(divRes)
+      if (userEnterValue >= monday && userEnterValue <= sunday) {
+        divRes.style.color = 'green'
+        divRes.innerText = 'Вказана дата і час знаходиться у межах поточного тижня'
+      } else {
+        divRes.style.color = 'red'
+        divRes.innerText = 'Вказана дата і час НЕ знаходиться у межах поточного тижня'
+      }
+    })
+
+
+
+
+
+  </script>
+</body>
+
+</html>

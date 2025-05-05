@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Task 3</title>
+</head>
+
+<body>
+  <!-- Задача 3. Визначити скільки залишилось до кінця робочого дня (до 17.00) -->
+
+  <script>
+    function updeteTime() {
+      const res = document.createElement('div')
+      document.body.append(res)
+      function getHoursTime() {
+        const now = new Date()
+        const hours = now.getHours()
+        const minutes = now.getMinutes()
+        const seconds = now.getSeconds()
+        if (hours < 9) {
+          res.innerText = 'Приміщення ще закрито. Ви рано!'
+        } else if (hours >= 17) {
+          res.innerText = 'Робочій день закінчився!'
+        } else {
+          const hoursTime = 16 - hours
+          const minutesTime = 59 - minutes
+          const seasonsTime = 59 - seconds
+          res.innerText = `До кінця робочого дня залишилося: ${hoursTime} годин ${minutesTime} хвилин ${seasonsTime}`
+        }
+      }
+      getHoursTime()
+      setInterval(getHoursTime, 1000)
+    }
+    updeteTime()
+  </script>
+
+
+</body>
+
+</html>

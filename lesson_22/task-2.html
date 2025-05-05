@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Task 2</title>
+</head>
+
+<body>
+  <!-- Задача 2. Вводимо час початку процедури (процедура триває 30хв). Визначити, чи процедура ще триває. -->
+  <div class="procedure-block">
+    <h2>Чи процедура ще триває?</h2>
+    <label>Години <input type="number" id="hours"></label>
+    <label>Хвилини <input type="number" id="minutes"></label>
+    <button class="btn">Визначити</button>
+  </div>
+  <script>
+    document.querySelector('.btn').addEventListener('click', function name() {
+      let hours = parseInt(document.getElementById('hours').value)
+      let minutes = parseInt(document.getElementById('minutes').value)
+      const message = document.createElement('div')
+      document.body.append(message)
+      if (isNaN(hours) || isNaN(minutes)) {
+        message.style.color = 'red'
+        message.innerText = 'Заповніть форму!'
+        return
+      }
+
+      const startProcedure = new Date()
+      startProcedure.setHours(hours)
+      startProcedure.setMinutes(minutes)
+      startProcedure.setSeconds(0)
+
+      const endProcedure = new Date(startProcedure.getTime() + 30 * 60000)
+      const currentDate = new Date()
+      if (currentDate < startProcedure) {
+        message.style.color = 'green'
+        message.innerText = ' Процедура ще не почалася!'
+      } else if (currentDate < endProcedure) {
+        message.style.color = 'green'
+        message.innerText = ' Процедура ще триває!'
+      }
+       else {
+        message.style.color = 'blue'
+        message.innerText = 'Процедура закінчилася!'
+      }
+    })
+  </script>
+
+</body>
+
+</html>
