@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lesson 23</title>
+</head>
+
+<body>
+  <h1>Урок №23. Опрацювання рядків. Регулярні вирази <br> Усі задачі можете оформити у одному файлі (так, як ми робимо
+    на лекції)</h1>
+  <script>
+    const notebooks = [
+      "Dell XPS",
+      "Apple MacBook Air M2",
+      "Lenovo ThinkPad X1 Carbon",
+      "ASUS",
+      "HP Spectre x360",
+      "Microsoft Surface Laptop 5",
+      "Acer Predator Helios 100",
+      "Razer Blade 16",
+      "Samsung Galaxy Book3 Ultra",
+      "MSI Stealth 15M",
+      "Tst"
+    ];
+
+
+    const text = "Сьогодні: 10-травня, 2025-року!  це приклад розділу весна"
+    const dayMonthYear = '11.05.2025'
+
+    const bank = '3968-4348-7685-7684'
+
+    const domain = 'www.zara.gov'
+
+    const history = 'В 2021 році відпочивав, в 2022 вивчив іноземну мову, в 2023 купив ноутбук, в 2025 купив телефон'
+
+    const mobilePhone = '+3805034848292'
+    //  Задача 1. Дано масив рядків. Вивести ті, у яких є цифри (використати метод test та регулярні вирази).
+    // const reg = /\d/
+
+    // notebooks.forEach((element) => {
+    //   if(reg.test(element)) {
+    //     console.log(element);
+    //   }
+    // });
+    // Задача 2. Дано масив рядків.Вивести ті, у яких немає цифр.
+    // const noNumbers = /^\D+$/
+    // notebooks.forEach((elem) => {
+    //   if(noNumbers.test(elem)) {
+    //     console.log(elem);
+    //   }
+    // })
+
+    // Задача 3. Дано масив рядків.Вивести ті, у яких є голосні літери.
+    // const vowels = /[аяоуюеєиіїAEIOUY]/i
+    // notebooks.forEach((elem)=>{
+    //   if(vowels.test(elem)) {
+    //     console.log(elem);
+    //   }
+    // })
+
+    // Задача 4. Дано масив рядків.Вивести ті, у яких немає голосних літер.
+    // const noVowels = /^[^аяоуюеєиіїAEIOUY]+$/gi
+    // notebooks.forEach((elem)=> {
+    //   if(noVowels.test(elem)){
+    //     console.log(elem);
+    //   }
+    // })
+
+    // Задача 5. Дано масив рядків.Вивести ті, у яких є або цифра 1 або цифра 3.
+    //  const num = /[13]/i
+    //  notebooks.forEach((el)=> {
+    //   if(num.test(el)){
+    //     console.log(el);
+    //   }
+    //  })
+
+    // Задача 6. Дано рядок тексту, вивести усі числа, які є у тексті.
+    // console.log(text.match(/\d/g));
+
+    // Задача 7. Дано рядок тексту.Знайти усі знаки пунктуації, які були використано.
+    // console.log(text.replace(/[А-Яа-яA-Za-z0-9і ]/g, ''));
+
+    // Задача 8. Дано рядок тексту.Вивести усі складові, які розділені розділовими знаками.
+
+    // console.log(text.split(/[.,:;!?-]/));
+
+    // Задача 9. Дано рядок тексту.Перевірити, чи містить він дату у форматі dd.mm.yyyy(dd - день, mm - місяць, yyyy - рік).
+
+    // const dateFormat = /^\d{2}\.\d{2}\.\d{4}$/
+    //   if (dateFormat.test(dayMonthYear)) {
+    //     console.log('Так!');
+    //   } else {
+    //     console.log('Ні!');
+    //   }
+
+    // Задача 10. Дано рядок тексту.Підрахувати кількість двоцифрових чисел у рядку.
+    // const twoDigitNumbers = /\b\d{2}\b/g
+    // const result = dayMonthYear.match(twoDigitNumbers)
+    // console.log(`Кількість двоцифрових чисел у рядку: ${result.length}`);
+
+    // Задача 11. Визначити чи може бути рядок тексту номером банківської картки(приклад: «4142 - 3433 - 2323 - 3434»).Знайти усі такі номери.
+
+    // const bankCardNumber = /\d{4}\-\d{4}\-\d{4}\-\d{4}/g
+    // if (bankCardNumber.test(bank)) {
+    //   console.log('Так!');
+    // } else {
+    //   console.log('Ні!');
+    // }
+
+    // Задача 12. Дано адресу сайту.Визначити, чи є він урядовим(містить домен “gov”)
+    // if(domain.endsWith('gov')) {
+    //   console.log('Так');
+    // } else console.log('Ні');
+
+    // Задача 13. Вибрати усі роки після 2021 року з отриманого повідомлення
+
+    // const afterYear = /\b(202[2-9])\b/g
+    // console.log(history.match(afterYear));
+
+    // Задача 14. Дано номер телефону.Перевірити, чи є цей телефон телефоном з України(починаєтсья на «+38»)
+    // if (mobilePhone.startsWith('+38')) {
+    //   console.log('Так');
+    // } else console.log('Ні');
+
+    // Задача 15. Користувач вводить прізвище та ім’я в одному рядку через пробіл.Замінити пробіл на дефіс.
+
+    // const fullName = 'Bogdan Sirko'
+    // console.log(fullName.replace(/\s/g, '-'));
+
+    // Задача 16. Користувач вводить дату у форматі «день.місяць.рік». Отримати рядкове представлення дати у форматі «день / місяць / рік»
+    // console.log(dayMonthYear.replace(/[.]/g, '/'));
+
+    // Задача 17. Користувач вводить день(номер дня(0 - 6) або «sun, mon, tue, wed, thu, fri, sat»).Визначити, чи  є це день вихідним
+    // const userValue = prompt('Введіть день')
+    // const dayOff = /([06])|(sun)|(sat)/gi
+    // if(dayOff.test(userValue)) {
+    //   document.writeln('Вихідний день!')
+    // } else document.writeln('Робочій день!')
+
+  </script>
+
+</body>
+
+</html>
