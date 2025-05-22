@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Task 2</title>
+</head>
+
+<body>
+  <!-- Задача 2. Дано Shop -- клас, що містить список товарів (масив об’єктів класу Product (назва, ціна, кількість одиниць).
+  Додати можливість ітератора до класу Shop, щоб при ітеруванні для кожного елемента виводився рядок «товар-загальна
+  вартість» -->
+
+  <script>
+    class Product {
+      constructor(name, price, quantity) {
+        this.name = name
+        this.price = price
+        this.quantity = quantity
+      }
+    }
+
+    const products = [
+      new Product('Картопля', 30.67, 15),
+      new Product('Мандарин', 22.12, 43),
+      new Product('Морква', 50.99, 10),
+      new Product('Банан', 70, 43),
+      new Product('Помідор', 95, 123)
+    ]
+
+    class Shop {
+      constructor(products) {
+        this.products = products
+      }
+
+      [Symbol.iterator]() {
+        this.currentProductIndex = 0
+        return this
+      }
+      next() {
+        if (this.currentProductIndex < this.products.length) {
+          const prod = this.products[this.currentProductIndex++]
+          return { done: false, value: `${prod.name} - загальна вартість: ${(prod.price * prod.quantity).toFixed(2)} грн <br>` }
+        } else {
+          return { done: true }
+        }
+      }
+    }
+
+    const shop = new Shop(products)
+    for (const element of shop) {
+      document.writeln(element)
+    }
+
+  </script>
+
+
+
+</body>
+
+</html>

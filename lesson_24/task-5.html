@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Task 5</title>
+</head>
+<body>
+  <!-- Задача 5. Дано масив книг (назва, рік видання, автор, ціна). Підрахувати загальну вартість книг для кожного із авторів. -->
+   <script>
+    const books = [
+        { title: "Убити пересмішника", year: 1960, author: "Френсіс Скотт Фіцджеральд", price: 320 },
+        { title: "Великий Гетсбі", year: 1925, author: "Френсіс Скотт Фіцджеральд", price: 280 },
+        { title: "451 градус за Фаренгейтом", year: 1953, author: "Рей Бредбері", price: 260 },
+        { title: "Загублений світ", year: 1912, author: "Едгар Райс Берроуз", price: 300 },
+        { title: "Прощавай, зброє", year: 1929, author: "Ернест Хемінгуей", price: 310 }
+      ];
+
+    const totalPrice = new Map()
+
+    books.forEach(book=>{
+      if (totalPrice.has(book.author)) {
+        totalPrice.set(book.author, totalPrice.get(book.author) + book.price)
+      } else {
+        totalPrice.set(book.author, book.price)
+      }
+    })
+
+    for (const [author, price] of totalPrice.entries()) {
+      document.writeln(`${author} - загальна вартість: ${price}грн <br>`)
+    }
+
+    
+
+   </script>
+</body>
+</html>

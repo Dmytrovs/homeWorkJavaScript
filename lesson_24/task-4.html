@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Task 4</title>
+</head>
+<body>
+  <!-- Задача 4. Дано список URL адрес. Підрахувати кількість адрес, що відносяться до кожного із доменів (edu, com, org,...). -->
+   <script>
+    const adress = ['www.trew.edu', 'www.uhuhj.edu', 'www.devax.com', 'www.gerfile.com', 'www.lorem.com', 'www.kiqer.org']
+  
+    const resAdress = new Map()
+    for (const el of adress) {
+      const part = el.split('.')
+      const domen = part[part.length-1]
+      if(resAdress.has(domen)) {
+        resAdress.set(domen, resAdress.get(domen) +1)
+      } else {
+        resAdress.set(domen, 1)
+      }
+    }
+
+    for (const [domen, count] of resAdress.entries()) {
+      document.writeln(`${domen} - ${count}<br>`)
+    }
+   </script>
+</body>
+</html>

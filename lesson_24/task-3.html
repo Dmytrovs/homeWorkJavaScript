@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Task 3</title>
+</head>
+<body>
+  <!-- Задача 3. Створити генератор, який би випадковим чином поступово генерував вказану кількість парних чисел. -->
+
+  <script>
+  let userQuantity = parseInt(prompt('К-сть парних?'))
+    
+    function* randGenerator(quantity) {
+      const res = new Set()
+      while (res.size < quantity) {
+        let randIndex = Math.floor(Math.random() * 1000)
+        if(randIndex % 2 === 0) {
+          res.add(randIndex)
+          yield randIndex
+        }
+      }
+    }
+
+    for (const element of randGenerator(userQuantity)) {
+      document.writeln(element + ', ')
+    }
+
+  </script>
+
+
+
+
+
+
+</body>
+</html>

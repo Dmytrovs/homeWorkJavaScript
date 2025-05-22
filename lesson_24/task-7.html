@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Task 7</title>
+</head>
+
+<body>
+  <!-- Задача 7. Дано масив студентів (піб, курс, факультет). Підрахувати кількість різних факультетів, та кількість студентів
+  кожного з курсів. -->
+
+  <script>
+    const students = [
+      {
+        pib: "Іваненко Марія Сергіївна",
+        kurs: 1,
+        fakultet: "Лікувальний"
+      },
+      {
+        pib: "Петров Олександр Ігорович",
+        kurs: 2,
+        fakultet: "Стоматологічний"
+      },
+      {
+        pib: "Шевченко Дмитро Володимирович",
+        kurs: 3,
+        fakultet: "Фармацевтичний"
+      },
+      {
+        pib: "Сидоренко Максим Дмитрович",
+        kurs: 4,
+        fakultet: "Медико-профілактичний"
+      },
+      {
+        pib: "Литвиненко Ольга Олексіївна",
+        kurs: 2,
+        fakultet: "Лікувальний"
+      },
+      {
+        pib: "Гончаренко Ірина Михайлівна",
+        kurs: 1,
+        fakultet: "Стоматологічний"
+      }
+    ];
+
+    const fakultetResult = new Set()
+
+    students.forEach(fakulty => {
+      fakultetResult.add(fakulty.fakultet)
+    })
+    document.writeln(`К-сть різних факультетів - ${fakultetResult.size}<br>`)
+
+    const quantytyStudentKurs = new Map()
+    students.forEach(student => {
+      if (quantytyStudentKurs.has(student.kurs)) {
+        quantytyStudentKurs.set(student.kurs, quantytyStudentKurs.get(student.kurs) + 1)
+      } else {
+        quantytyStudentKurs.set(student.kurs, 1)
+      }
+    })
+
+    for (const [kurs, student] of quantytyStudentKurs.entries()) {
+      document.writeln(`Курс: ${kurs},  к-сть студентів - ${student}<br>`)
+    }
+
+  </script>
+
+
+</body>
+
+</html>
